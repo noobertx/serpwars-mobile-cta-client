@@ -1,27 +1,8 @@
-/*eslint-disable no-alert */
-/* global M */
 
 <template>
-	<div>
-        <!-- Dropdown Trigger -->
-        <!-- <a class='dropdown-trigger white-text blue btn' href='#' data-target='dropdown1'><i class="fa fa-plus"></i> Create</a> -->
-        <!-- Dropdown Structure -->
-        <!-- <ul id='dropdown1' class='dropdown-content' style="width:320px;"> -->
+	<div>        
         <ul class="element-selector">
             <li><a href="#!" @click='addItem' data-item-type="custom" class = "create-custom-btn"><i class='fa fa-cog'></i>  Custom Button</a></li>
-            <!-- <li><a href="#!" @click='addItem' data-item-type="static_text"  class = "create-custom-btn"><i class='fa fa-font'></i>  Static Text</a></li> -->
-            <!-- <li><a href="#!" @click='addItem' data-item-type="fb_messenger"  class = "create-custom-btn"><i class='fa fa-comment'></i>  Messenger button</a></li> -->
-            <!-- <li><a href="#!" @click='addItem' data-item-type="count_down"  class = "create-custom-btn"><i class='fa fa-hourglass'></i>  Count Down</a></li> -->
-            <!-- <li><a href="#!" @click='addItem' data-item-type="toggle"  class = "create-custom-btn"><i class='fa fa-bars'></i>  Toggle Secondary</a></li> -->
-            <li><a href="#!" @click='addItem' data-item-type="fb_share"  class = "create-custom-btn waves-effect"><i class='fab fa-facebook'></i>  Facebook Share</a></li>
-            <li><a href="#!" @click='addItem' data-item-type="twitter_share"  class = "create-custom-btn waves-effect"><i class='fab fa-twitter'></i>  Twitter Share</a></li>
-            <li><a href="#!" @click='addItem' data-item-type="google_share"  class = "create-custom-btn waves-effect"><i class='fab fa-google-plus'></i>  Google Share</a></li>
-            <li><a href="#!" @click='addItem' data-item-type="pinterest_share"  class = "create-custom-btn waves-effect"><i class='fab fa-pinterest'></i>  Pinterest Share</a></li>
-            <li><a href="#!" @click='addItem' data-item-type="linkedin_share"  class = "create-custom-btn waves-effect"><i class='fab fa-linkedin'></i>  LinkedIn Share</a></li>
-            <li><a href="#!" @click='addItem' data-item-type="digg_share"  class = "create-custom-btn waves-effect"><i class='fab fa-digg'></i>  Digg Share</a></li>
-            <li><a href="#!" @click='addItem' data-item-type="tumblr_share"  class = "create-custom-btn waves-effect"><i class='fab fa-tumblr'></i>  Tumblr Share</a></li>
-            <li><a href="#!" @click='addItem' data-item-type="reddit_share"  class = "create-custom-btn waves-effect"><i class='fab fa-reddit'></i>  Reddit Share</a></li>
-            <li><a href="#!" @click='addItem' data-item-type="yahoo_share"  class = "create-custom-btn waves-effect"><i class='fab fa-yahoo'></i>  Yahoo Share</a></li>
 		</ul>
 	</div>
 </template>
