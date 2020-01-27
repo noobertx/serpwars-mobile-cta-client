@@ -916,4 +916,8 @@ nav.tabs {
 .serp-preview-body>p {
     padding: 0 5px;
 }
+
+a.btn.blue.btn-block.save_btn:hover {
+    color: #fff;
+}
 </style>
