@@ -178,7 +178,8 @@
                 <div class="accordion-content">
                   <div class="row">
                     <div class="col m12">
-                      <font-icon-picker></font-icon-picker>                  
+
+                      <simple-icon-picker ></simple-icon-picker>              
                     </div>
                   </div>
                   <div class="row">
@@ -450,7 +451,8 @@ import NavBar from './components/NavBar.vue'
 import SimpleColorPicker from './components/ui/SimpleColorPicker.vue'
 import NewUi from './components/ui/NewUi.vue'
 import ElementSelectDropdown from './components/ui/ElementSelectDropdown.vue'
-import FontIconPicker from './components/ui/FontIconPicker.vue'
+import SimpleIconPicker from './components/ui/SimpleIconPicker.vue'
+
 import MobileElements from './components/MobileElements.vue'
 
 import "toastify-js/src/toastify.css"
@@ -481,7 +483,7 @@ export default {
     ContainerPresets,
     PageSelector,
     ElementSelectDropdown,
-    FontIconPicker,
+    SimpleIconPicker,
     MobileElements,
     InputSize,
     NavBar,
