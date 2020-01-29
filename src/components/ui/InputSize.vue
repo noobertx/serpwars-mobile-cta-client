@@ -48,7 +48,7 @@
 </script>
 <style scope>
 	.field_group input[type="number"]{
-		width:100%;
+		width:94%;
 		box-shadow: 0 0 0 transparent;
     	border-radius: 4px;
     	border: 1px solid #7e8993;

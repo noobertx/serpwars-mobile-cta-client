@@ -9,25 +9,15 @@
       </div>
     </div>
     <div class="mobile-cta-app-wrap" v-if="isLoaded">
-      <div class="app-title">Title</div>
+      <div class="app-title">Button Name</div>
       <input type="text" v-model="$store.state.title" class="serp-textfield browser-default" style="width:42%">
 
-    <div class="ca_nav-wrap">
-      <ul>
-        <li><a href="#" class="btn light-blue accent-3 waves-effect" title="Create"><i class="fa fa-plus"></i> </a>
-          <div class="ca_submenu" >
-            <element-select-dropdown :loaded_data='loaded_data'></element-select-dropdown>            
-          </div>
-        </li>
-        <li><a href="#" class="btn light-blue accent-3 waves-effect" title="Load Presets"><i class="fas fa-truck-loading"></i>  Presets</a>
-          <div class="ca_submenu">
-            <container-presets></container-presets>            
-          </div>
-        </li>
-      </ul>
-    </div>
+
 
   
+    <div class="row">
+       <container-presets></container-presets>   
+    </div>
     <div class="row">
       <!-- <element-select-dropdown :loaded_data='loaded_data'></element-select-dropdown> -->
       <!-- <a href="#" class="btn red white-text" @click="deleteElement" v-show="showDelete"><i class="fa fa-times"></i> Delete This Element</a> -->
@@ -56,21 +46,21 @@
                     </div>
                   </div>
 
-              <accordion title="Text">
+              <accordion title="Buttons">
                 <div class="accordion-content">
                   <div class="row field_group">
-                    <div class="col m3">
+                    <div class="col m4">
                         <label >Link Text </label>
                     </div>                  
-                    <div class="col m9">                      
+                    <div class="col m8">                      
                       <input type="text" class="serp-textfield browser-default" name="button_text" v-model="$store.state.loaded_data[$store.state.current_item].link_text">                    
                     </div>
                   </div>
                   <div class="row field_group">
-                    <div class="col m3">
+                    <div class="col m4">
                       <label > URL</label>
                     </div>
-                    <div class="col m9">
+                    <div class="col m8">
                       <input type="text" class="serp-textfield browser-default" name="button_text" v-model="$store.state.loaded_data[$store.state.current_item].link_path">
                     </div>
                   </div>
@@ -80,15 +70,109 @@
                       </div>
                   </div>
                   <div class="row field_group">
-                    <div class="col m3">                      
+                    <div class="col m4">                      
                       <label>Text Color</label>
                     </div>
-                    <div class="col m9">
+                    <div class="col m8">
                       <color-picker item="text" field="color"></color-picker>
                     </div> 
                   </div>
+
+                  <div class="row field_group">
+                    <div class="col m4">                      
+                      <label>Background</label>
+                    </div>                    
+                    <div class="col m8">
+                      <color-picker item="main" field="background"></color-picker>
+                    </div>                                       
+                  </div>
+
+
                 </div>
-              </accordion>
+                <div class="accordion-content">
+                  <div class="row">
+                    <div class="col m12">
+                      
+ 
+  </div>
+  </div>
+                <div class="row ca-content-visibility field_group">
+                  <div class="col m4">       
+                     <label for="">Content Visibility</label>  
+                  </div>
+                  <div class="col m8">       
+                        <select name="content_visibility" class="browser-default"  v-model="$store.state.loaded_data[$store.state.current_item].content_visibility">
+                           <option v-for="option in [
+                    { text: 'Show All', value: '' },
+                    { text: 'Show Text Only', value: 'text_only' },
+                    { text: 'Show Icon Only', value: 'icon_only' }
+                  ]" v-bind:value="option.value" v-bind:key="option.text">{{ option.text }}</option>
+                         </select>
+                      
+                  </div>
+                </div>
+
+                <div class="row ca-content-visibility field_group">
+                  <div class="col m4">     
+                     <label for="">Content Layout</label>  
+                  </div>
+                  <div class="col m8">     
+                        <select name="content_layout"  class= "browser-default" v-model="$store.state.loaded_data[$store.state.current_item].style.main.layout">
+                           <option v-for="option in [
+                    { text: 'Side Icon', value: '' },
+                    { text: 'Top Icon', value: 'vertical' }
+
+                  ]" v-bind:value="option.value" v-bind:key="option.text">{{ option.text }}</option>
+                         </select>
+                  </div>
+                </div>
+                    <div class="ca-content-alignment field_group row " >  
+                    <div class="col m4">                      
+                        <label for="" >Content Position</label>  
+                    </div>        
+            <div class="col m8">              
+              <select name="layout" class="browser-default"  v-model="$store.state.container.layout" >
+                <option disabled value="left">Please select one</option>
+                <option v-for="option in [
+      { text: 'Left', value: 'start' },
+      { text: ' Center', value: 'center' },
+      { text: ' Right', value: 'right' },
+      { text: 'Space Around', value: 'space_around' },
+      { text: ' Space in Between', value: 'space_between' },
+      { text: ' Space Evenly', value: 'space_evenly' }
+    ]" v-bind:value="option.value" v-html="option.text" v-bind:key="option.text">{{ option.text }}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="container_width field_group row ">  
+              <div class="col m4">                
+                <label for="" >Content Width</label> 
+              </div>        
+   <div class="col m8"> 
+       <select name="layout" class="browser-default"  v-model="$store.state.container.width" >
+      <option v-for="option in [
+        { text: ' Custom', value: 'custom' },
+        { text: 'Auto', value: 'auto' },
+        { text: ' Min Content', value: 'min-content' },
+        { text: ' Max Content', value: 'max-content' },
+        { text: 'Fill Space Available', value: '-webkit-fill-available' }      
+    ]" v-bind:value="option.value" v-html="option.text" v-bind:key="option.text">{{ option.text }}</option>
+      </select>
+   </div>
+   
+    
+</div>
+<div v-if="$store.state.container.width=='custom'" class="row field_group">
+      <div class="col m12">                   
+        <input-size label="Width" :item="$store.state.container.cw" :units="['px','em','rem','%']"></input-size>
+      </div>
+    </div>
+                </div>
+                <div class="accordion-content">
+                  
+                </div>                
+              </accordion> 
 
               <accordion title="Icon">
                 <div class="accordion-content">
@@ -145,100 +229,7 @@
             
             </div>
          
-              <accordion title="Content">
-                <div class="accordion-content">
-                  <div class="row">
-                    <div class="col m12">
-                      
- 
-  </div>
-  </div>
-                <div class="row ca-content-visibility field_group">
-                  <div class="col m5">       
-                     <label for="">Content Visibility</label>  
-                  </div>
-                  <div class="col m7">       
-                        <select name="content_visibility" class="browser-default"  v-model="$store.state.loaded_data[$store.state.current_item].content_visibility">
-                           <option v-for="option in [
-                    { text: 'Show All', value: '' },
-                    { text: 'Show Text Only', value: 'text_only' },
-                    { text: 'Show Icon Only', value: 'icon_only' }
-                  ]" v-bind:value="option.value" v-bind:key="option.text">{{ option.text }}</option>
-                         </select>
-                      
-                  </div>
-                </div>
-
-                <div class="row ca-content-visibility field_group">
-                  <div class="col m5">     
-                     <label for="">Content Layout</label>  
-                  </div>
-                  <div class="col m7">     
-                        <select name="content_layout"  class= "browser-default" v-model="$store.state.loaded_data[$store.state.current_item].style.main.layout">
-                           <option v-for="option in [
-                    { text: 'Side Icon', value: '' },
-                    { text: 'Top Icon', value: 'vertical' }
-
-                  ]" v-bind:value="option.value" v-bind:key="option.text">{{ option.text }}</option>
-                         </select>
-                  </div>
-                </div>
-                    <div class="ca-content-alignment field_group row " >          
-           <label for="" class="col m5">Content Position</label>  
-            <div class="col m7">              
-              <select name="layout" class="browser-default"  v-model="$store.state.container.layout" >
-                <option disabled value="left">Please select one</option>
-                <option v-for="option in [
-      { text: 'Left', value: 'start' },
-      { text: ' Center', value: 'center' },
-      { text: ' Right', value: 'right' },
-      { text: 'Space Around', value: 'space_around' },
-      { text: ' Space in Between', value: 'space_between' },
-      { text: ' Space Evenly', value: 'space_evenly' }
-    ]" v-bind:value="option.value" v-html="option.text" v-bind:key="option.text">{{ option.text }}</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="container_width field_group row ">          
-  <label for="" class="col m5">Content Width</label> 
-   <div class="col m7"> 
-       <select name="layout" class="browser-default"  v-model="$store.state.container.width" >
-      <option v-for="option in [
-        { text: ' Custom', value: 'custom' },
-        { text: 'Auto', value: 'auto' },
-        { text: ' Min Content', value: 'min-content' },
-        { text: ' Max Content', value: 'max-content' },
-        { text: 'Fill Space Available', value: '-webkit-fill-available' }      
-    ]" v-bind:value="option.value" v-html="option.text" v-bind:key="option.text">{{ option.text }}</option>
-      </select>
-   </div>
-   
-    
-</div>
-<div v-if="$store.state.container.width=='custom'" class="row field_group">
-      <div class="col m12">                   
-        <input-size label="Width" :item="$store.state.container.cw" :units="['px','em','rem','%']"></input-size>
-      </div>
-    </div>
-
-
-
-                    
-                
-                </div>
-              </accordion> 
-              <accordion title="Colors">
-                <div class="accordion-content">
-                  <div class="row field_group">
-                    
-                    <div class="col m12">
-                      <label>Background Color</label>
-                      <color-picker item="main" field="background"></color-picker>
-                    </div>                                       
-                  </div>
-                </div>                
-              </accordion> 
+              
               <accordion title="Size">
                 <div class="accordion-content field_group">
                   <label for="auto_width">                    
@@ -634,6 +625,7 @@ export default {
           context.isSaving = false;
         },2000)
 
+        console.log(JSON.stringify(context.$store.state.loaded_data));
       }else{
         var context = this;
 
@@ -701,7 +693,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 25px;
 }
 .container {
     width: 85%!important;
@@ -856,6 +848,9 @@ ul.element-selector a:hover {
     .preset-selector ul li:nth-child(7) .imgwrap{
     background:url("././assets/07.jpg");;
   }
+  .preset-selector ul {
+    width: 47%;
+  }
 
   select.button_type{
     width: 100%!important;
@@ -877,6 +872,9 @@ input.serp-textfield browser-default,.form-group .minicolors-input {
     padding: 5px 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
+}
+.serp-textfield {
+    width: 100%;
 }
 
 .field_group .form-group {
@@ -929,4 +927,6 @@ a.btn.blue.btn-block.save_btn:hover {
 #serp-settings-wrap{
   padding: 0;
 }
+
+
 </style>

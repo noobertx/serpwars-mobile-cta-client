@@ -4,10 +4,10 @@
 			<i :class="getIcon"></i>
 		</div>
 		<div class="row field_group">
-			<div class="col m3">
+			<div class="col m4">
 				<label for="">Icon</label>
 			</div>
-			<div class="col m9">
+			<div class="col m8">
 				<input class="icp iconpicker" v-model="$store.state.loaded_data[$store.state.current_item].icon" type="text" data-selected="fa-align-justify">			
 			</div>
 		</div>

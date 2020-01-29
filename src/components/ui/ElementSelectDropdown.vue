@@ -108,6 +108,7 @@
 		addItem:function(e){			
 			var data = $(e.target).attr("data-item-type");
 			if(data=="custom"){
+                console.log(JSON.stringify(this.createCustomButton()));
                 this.create_item(this.createCustomButton());
             }else{
                 this.create_item(this.createSocialButton(data));
