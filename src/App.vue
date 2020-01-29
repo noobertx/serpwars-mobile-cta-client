@@ -74,7 +74,7 @@
                       <label>Text Color</label>
                     </div>
                     <div class="col m8">
-                      <color-picker item="text" field="color"></color-picker>
+                      <simple-color-picker item="text" field="color" ></simple-color-picker>
                     </div> 
                   </div>
 
@@ -83,7 +83,7 @@
                       <label>Background</label>
                     </div>                    
                     <div class="col m8">
-                      <color-picker item="main" field="background"></color-picker>
+                      <simple-color-picker item="main" field="background" ></simple-color-picker>
                     </div>                                       
                   </div>
 
@@ -192,7 +192,7 @@
                       <label>Icon Color</label>
                     </div>
                     <div class="col m8">
-                      <color-picker item="icon" field="color"></color-picker>
+                      <simple-color-picker item="icon" field="color" ></simple-color-picker>
                     </div>
                   </div>
                 </div>
@@ -446,7 +446,8 @@ import RangeSlider from './components/ui/RangeSlider.vue'
 import InputSize from './components/ui/InputSize.vue'
 import PageSelector from './components/ui/PageSelector.vue'
 import NavBar from './components/NavBar.vue'
-import ColorPicker from './components/ui/ColorPicker.vue'
+// import ColorPicker from './components/ui/ColorPicker.vue'
+import SimpleColorPicker from './components/ui/SimpleColorPicker.vue'
 import NewUi from './components/ui/NewUi.vue'
 import ElementSelectDropdown from './components/ui/ElementSelectDropdown.vue'
 import FontIconPicker from './components/ui/FontIconPicker.vue'
@@ -474,7 +475,7 @@ export default {
   components: {
     Accordion,
     RangeSlider,
-    ColorPicker,
+    SimpleColorPicker,
     NewUi,
     InputSize,
     ContainerPresets,
