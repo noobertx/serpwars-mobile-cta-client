@@ -10,23 +10,18 @@
     </div>
     <div class="mobile-cta-app-wrap" v-if="isLoaded">
       <div class="app-title">Title</div>
-      <input type="text" v-model="$store.state.title" class="serp-textfield browser-default" style="width:39%">
+      <input type="text" v-model="$store.state.title" class="serp-textfield browser-default" style="width:42%">
 
     <div class="ca_nav-wrap">
       <ul>
         <li><a href="#" class="btn light-blue accent-3 waves-effect" title="Create"><i class="fa fa-plus"></i> </a>
-          <div class="ca_submenu">
+          <div class="ca_submenu" >
             <element-select-dropdown :loaded_data='loaded_data'></element-select-dropdown>            
           </div>
         </li>
         <li><a href="#" class="btn light-blue accent-3 waves-effect" title="Load Presets"><i class="fas fa-truck-loading"></i>  Presets</a>
           <div class="ca_submenu">
             <container-presets></container-presets>            
-          </div>
-        </li>
-        <li ><a href="#" class="btn light-blue accent-3 waves-effect"><i class="fas fa-toolbox"></i> Container Options</a>
-          <div class="ca_submenu" >
-             <container-options></container-options>
           </div>
         </li>
       </ul>
@@ -39,33 +34,20 @@
 
     </div>
     <div class="row" @elementSelected="test" >
-      <div class="col m5">
+      <div class="col m5 " id = "serp-settings-wrap">
          
 
                <vue-tiny-tabs id="mytabs" :anchor="false" :closable="false" :hideTitle="true"  v-if="$store.state.loaded_data.length>0 && $store.state.current_item!=-1">
           <div class="section" id="component">
              <h3 class="title">Content</h3>
             <div class="settings">
-                  <div class="row">
+                  <div class="row" style="display: none;">
                     <div class="col m12">
                                <div class="ca-button-type field_group" >          
            <label for="">Type</label>  
           <select name="button_type" class="button-type browser-default"  style = "width: 100%; padding: 5px 10px;" v-model="$store.state.loaded_data[$store.state.current_item].type">
              <option v-for="option in [
-      { text: '<i class=\'fa fa-cog\'></i>  Custom button', value: 'custom' },
-      { text: '<i class=\'fa fa-font\'></i>  Static Text', value: 'static_text' },
-      { text: '<i class=\'fa fa-hourglass\'></i>  Count Down Timer', value: 'count_down' },
-      { text: '<i class=\'fa fa-bars\'></i> to Show Secondary Panel', value: 'toggle' },
-      { text: '<i class=\'fa fa-comment\'></i>  Messenger button', value: 'fb_messenger' },
-      { text: '<i class=\'fa fa-facebook\'></i>  Facebook Share button', value: 'fb_share' },
-      { text: '<i class=\'fa fa-twitter\'></i>  Twitter Share button', value: 'twitter_share' },
-      { text: '<i class=\'fa fa-google-plus\'></i>  Google Share button', value: 'google_share' },
-      { text: '<i class=\'fa fa-pinterest\'></i>  Pinterest Share button', value: 'pinterest_share' },
-      { text: '<i class=\'fa fa-linkedin\'></i>  LinkedIn Share button', value: 'linkedin_share' },
-      { text: '<i class=\'fa fa-digg\'></i>  Digg Share button', value: 'digg_share' },
-      { text: '<i class=\'fa fa-tumblr\'></i>  Tumblr Share button', value: 'tumblr_share' },
-      { text: '<i class=\'fa fa-reddit\'></i>  Reddit Share button', value: 'reddit_share' },
-      { text: '<i class=\'fa fa-yahoo\'></i>  Yahoo Share button', value: 'yahoo_share' },
+      { text: '<i class=\'fa fa-cog\'></i>  Custom button', value: 'custom' }
     ]" v-bind:value="option.value" v-html="option.text" v-bind:key="option.value">{{ option.text }}</option>
            </select>
 <!-- 
@@ -131,31 +113,7 @@
                   </div>
                 </div>
               </accordion>
-                
-
-                  
-                
-                  
-                  <div class="row field_group">
-                  <div class="col m3">
-                    <label for="">
-                      Class                       
-                    </label>
-                  </div>
-                  <div class="col m9">
-                    
-                  <input type="text" class="serp-textfield browser-default" name="button_text" v-model="$store.state.loaded_data[$store.state.current_item].class">                    
-                  </div>
-                </div>
-                  <div class="row field_group">
-                    <div class="col m3">
-                      <label >ID </label>                      
-                    </div>
-                    <div class="col m9">
-                      <input type="text" class="serp-textfield browser-default" name="button_text" v-model="$store.state.loaded_data[$store.state.current_item].id">
-                  </div>
-                </div>
-                
+           
                   <div class="ca-button-alignment" style="display: none">          
                          <label for="">Position</label>  
                         <select name="button_position" class="browser-default"  v-model="$store.state.loaded_data[$store.state.current_item].text_position">
@@ -186,9 +144,7 @@
               
             
             </div>
-          </div>
-          <div class="section" id="styling">
-            <h3 class="title">Styling</h3>
+         
               <accordion title="Content">
                 <div class="accordion-content">
                   <div class="row">
@@ -220,13 +176,53 @@
                   <div class="col m7">     
                         <select name="content_layout"  class= "browser-default" v-model="$store.state.loaded_data[$store.state.current_item].style.main.layout">
                            <option v-for="option in [
-                    { text: 'Layout 1', value: '' },
-                    { text: 'Layout 2', value: 'vertical' }
+                    { text: 'Side Icon', value: '' },
+                    { text: 'Top Icon', value: 'vertical' }
 
                   ]" v-bind:value="option.value" v-bind:key="option.text">{{ option.text }}</option>
                          </select>
                   </div>
                 </div>
+                    <div class="ca-content-alignment field_group row " >          
+           <label for="" class="col m5">Content Position</label>  
+            <div class="col m7">              
+              <select name="layout" class="browser-default"  v-model="$store.state.container.layout" >
+                <option disabled value="left">Please select one</option>
+                <option v-for="option in [
+      { text: 'Left', value: 'start' },
+      { text: ' Center', value: 'center' },
+      { text: ' Right', value: 'right' },
+      { text: 'Space Around', value: 'space_around' },
+      { text: ' Space in Between', value: 'space_between' },
+      { text: ' Space Evenly', value: 'space_evenly' }
+    ]" v-bind:value="option.value" v-html="option.text" v-bind:key="option.text">{{ option.text }}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="container_width field_group row ">          
+  <label for="" class="col m5">Content Width</label> 
+   <div class="col m7"> 
+       <select name="layout" class="browser-default"  v-model="$store.state.container.width" >
+      <option v-for="option in [
+        { text: ' Custom', value: 'custom' },
+        { text: 'Auto', value: 'auto' },
+        { text: ' Min Content', value: 'min-content' },
+        { text: ' Max Content', value: 'max-content' },
+        { text: 'Fill Space Available', value: '-webkit-fill-available' }      
+    ]" v-bind:value="option.value" v-html="option.text" v-bind:key="option.text">{{ option.text }}</option>
+      </select>
+   </div>
+   
+    
+</div>
+<div v-if="$store.state.container.width=='custom'" class="row field_group">
+      <div class="col m12">                   
+        <input-size label="Width" :item="$store.state.container.cw" :units="['px','em','rem','%']"></input-size>
+      </div>
+    </div>
+
+
 
                     
                 
@@ -371,11 +367,11 @@
               
           </div> 
           <div class="section" id="advance">
-            <h3 class="title">Advance</h3>
+            <h3 class="title">Advanced</h3>
               <div class="row">
                 <div class="col m12">
                    <label for="exclusive_page">                    
-                  <input type="checkbox" name="exclusive_page" id="exclusive_page"  v-model="$store.state.loaded_data[$store.state.current_item].exclusive_page" true-value="true" false-value=""> Show Only to Specific Page
+                  <input type="checkbox" name="exclusive_page" id="exclusive_page"  v-model="$store.state.loaded_data[$store.state.current_item].exclusive_page" true-value="true" false-value=""> Show Only On Specific Page
                   </label>
                   <div v-if="displayExclusivePage">
                     <page-selector field="pages" :item="$store.state.loaded_data[$store.state.current_item]"></page-selector>                    
@@ -420,7 +416,7 @@
         
       </div>
       <div class="col m7 " style="    display: flex;    justify-content: flex-end;">
-          <div class="serp-preview-wrap main-mockup" style="width: 100%;max-width: 616px;position: fixed;margin: 0; padding: 0; top: 15px;">
+          <div class="serp-preview-wrap main-mockup" style="width: 100%;max-width: 616px;position: fixed;margin: 0; padding: 0; top: 15px;transform: scale(0.85);">
             <div class="serp-preview-screen" style=" max-width: 365px;width: 365px;">    
               <div class="serp-preview-content">
                 <div class="serp-preview-content-wrap" style="text-align:center;  position: absolute;
@@ -448,9 +444,10 @@
 
 <script>
 
+import axios from 'axios';
+
 import VueTinyTabs from 'vue-tiny-tabs'
 import ContainerPresets from './components/ContainerPresets.vue'
-import ContainerOptions from './components/ContainerOptions.vue'
 import Accordion from './components/Accordion.vue'
 
 import RangeSlider from './components/ui/RangeSlider.vue'
@@ -466,6 +463,7 @@ import MobileElements from './components/MobileElements.vue'
 
 import "toastify-js/src/toastify.css"
 import Toastify from 'toastify-js'
+
 
 
 
@@ -485,7 +483,6 @@ export default {
   components: {
     Accordion,
     RangeSlider,
-    ContainerOptions,
     ColorPicker,
     NewUi,
     InputSize,
@@ -494,6 +491,7 @@ export default {
     ElementSelectDropdown,
     FontIconPicker,
     MobileElements,
+    InputSize,
     NavBar,
     'vue-tiny-tabs': VueTinyTabs
   },
@@ -567,6 +565,9 @@ export default {
           var context = this;
 
           var data ="";
+
+
+
           $.post(ajaxurl,{
             action:"load_item",
             id:fetch_id
@@ -761,6 +762,9 @@ export default {
     color: #fff!important;
 
 }
+.preset-selector a,.preset-selector a:hover{
+  color: #039be5!important;
+}
 ul.element-selector a:hover {
     background: #4284f4!important;
     color: #fff!important;
@@ -773,7 +777,7 @@ ul.element-selector a:hover {
     box-shadow: none;
 }
   .tinytabs .tabs {
-  margin-left: 15px;
+  margin-left: 0px;
   display: flex;
   flex-flow: row wrap;
 }
@@ -793,7 +797,7 @@ ul.element-selector a:hover {
 .tinytabs .section {
   background: #f1f1f1;
   overflow: hidden;
-  padding: 15px;
+  padding: 15px 0;
   clear: both;
   border-radius: 3px;
 }
@@ -881,6 +885,7 @@ input.serp-textfield browser-default,.form-group .minicolors-input {
 .app-title {
     font-size: 21px;
     font-weight: bold;
+    padding-bottom: 10px;
 }
 
 
@@ -919,5 +924,9 @@ nav.tabs {
 
 a.btn.blue.btn-block.save_btn:hover {
     color: #fff;
+}
+
+#serp-settings-wrap{
+  padding: 0;
 }
 </style>
