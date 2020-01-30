@@ -289,7 +289,7 @@
                     </div>
                     <div class="col m12">
                       <label>Color</label>
-                      <color-picker item="border" field="color"></color-picker>
+                       <simple-color-picker item="border" field="color" ></simple-color-picker>
                     </div>
                   </div>
                   <div class="row" v-if="showBorder">
