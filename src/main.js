@@ -18,14 +18,11 @@ import 'rangeslider.js/dist/rangeslider.min.js'
 import 'spectrum-colorpicker/spectrum.css'
 import 'spectrum-colorpicker/spectrum.js'
 
-import '@claviska/jquery-minicolors/jquery.minicolors.css'
-import '@claviska/jquery-minicolors/jquery.minicolors.min.js'
 
 import 'fontawesome-iconpicker/dist/css/fontawesome-iconpicker.min.css'
 import 'fontawesome-iconpicker/dist/js/fontawesome-iconpicker.min.js'
 
 
-window.$ = window.jQuery = require('jquery');
 library.add(faUserSecret)
 
 

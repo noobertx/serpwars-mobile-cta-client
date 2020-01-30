@@ -184,7 +184,7 @@
                   </div>
                   <div class="row">
                     <div class="col m12">
-                      <!-- <range-slider label ="Icon Size" min='0' max='100' step='1' item="icon" field="size" :units="['px','em','rem','%']"></range-slider> -->
+                    
                       <input-size label="Icon Size" :item="$store.state.loaded_data[$store.state.current_item].style.icon" :units="['px','em','rem','%']"></input-size>
                     </div>
                   </div>
@@ -241,12 +241,12 @@
                   </label>
 
                   <div class="range-wrap" v-if="showRangeWidth">
-                     <!-- <range-slider label =" Width (%)" min='0' max='100' step='1' item="main" field="width"></range-slider>                     -->
+                   
                      <input-size label="Width" :item="$store.state.loaded_data[$store.state.current_item].style.main.width" :units="['px','em','rem','%']"></input-size>
                   </div>
                   <div class="range-wrap" v-if="showRangeHeight">
                      <input-size label="Height" :item="$store.state.loaded_data[$store.state.current_item].style.main.height" :units="['px','em','rem','%']"></input-size>
-                     <!-- <range-slider label =" Height (px)" min='0' max='100' step='1' item="main" field="height"></range-slider>                     -->
+                    
                   </div>
                 </div>
               </accordion>
@@ -442,7 +442,6 @@ import VueTinyTabs from 'vue-tiny-tabs'
 import ContainerPresets from './components/ContainerPresets.vue'
 import Accordion from './components/Accordion.vue'
 
-import RangeSlider from './components/ui/RangeSlider.vue'
 
 import InputSize from './components/ui/InputSize.vue'
 import PageSelector from './components/ui/PageSelector.vue'
@@ -477,7 +476,6 @@ export default {
   ],
   components: {
     Accordion,
-    RangeSlider,
     SimpleColorPicker,
     NewUi,
     InputSize,
