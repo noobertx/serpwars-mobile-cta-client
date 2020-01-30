@@ -1,10 +1,26 @@
 <template>
 	<div class="">
 		<div class="icon-select-preview">
-			<i :class="getIcon"></i>
+			<div class="row">				
+				<div class="col m12 center-align">
+					<i :class="getIcon"></i>
+					<br>
+					<br>
+					<button class="btn btn-small white black-text" @click="displaySearch">Change Icon</button>
+				</div>
+			</div>
+			
+			
 		</div>
-    <label for="exampleFormControlInput1">Font awesome icon :</label>
-    <input ref="picker" v-model="search" @blur="blur" @focus="focus" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Search an icon">
+		<div class="row field_group" v-show="show==true">
+			<div class="col m4">
+    			<label for="exampleFormControlInput1">Search icon</label>				
+			</div>
+			<div class="col m8">
+				<input ref="picker" v-model="search" @blur="blur" @focus="focus" type="text" class="form-control browser-default" id="exampleFormControlInput1" placeholder="Search an icon" style="width:100%">
+			</div>
+		</div>
+    
     <transition name="icon-preview-fade">
       <div v-if="focusOn" class="preview-container">
         <div @click="select(undefined)" @mouseover="hoverPanel = true" @mouseout="hoverPanel = false" :class="['previewer', 'rounded', {'custom-shadow-sm': !hoverPanel}, {'custom-shadow': hoverPanel} ]">
@@ -30,16 +46,17 @@ const iconList = '{"icons":[{"title":"fab fa-500px","searchTerms":[]},{"title":"
 		props: ['value'],
 		data: function(){
     		return {
-    			focusOn: false, // <- set this to false
+    			focusOn: true, // <- set this to false
     			icons: icons,
     			hoverPanel: false,
-    			search: " ",
-    			beforeSelect: " ",
-    			selected: " ",
+    			search: "",
+    			beforeSelect: "",
+    			selected: "",
+    			show:false
     		}
   		},
   		beforeMount(){
-		  	this.search = this.value
+		  	this.search = " "
 		},
 		watch: {
 		  	search: function(newValue){
@@ -51,6 +68,9 @@ const iconList = '{"icons":[{"title":"fab fa-500px","searchTerms":[]},{"title":"
       timeout = setTimeout(() => {
         this.focusOn = false;
       }, 150);
+    },
+    displaySearch(){
+    	this.show = true;
     },
     focus(){
       this.focusOn = true;
@@ -73,11 +93,16 @@ const iconList = '{"icons":[{"title":"fab fa-500px","searchTerms":[]},{"title":"
 		return context.$store.state.loaded_data[context.$store.state.current_item].icon
 	},
     iconsFiltered: function(){
-      const search = (this.search == this.selected) ? this.beforeSelect : this.search
-      return this.icons.filter(i => 
-        i.title.indexOf(search) !== -1 || i.searchTerms.some(t => t.indexOf(search) !== -1)
-      )
+    	if(this.search==""){
+    		return this.icons
+    	}else{
+      		const search = (this.search == this.selected) ? this.beforeSelect : this.search
+      		return this.icons.filter(i => 
+        		i.title.indexOf(search) !== -1 || i.searchTerms.some(t => t.indexOf(search) !== -1)
+      		)
+    	}
     }
+    
   }
 	}
 </script>
@@ -150,5 +175,13 @@ const iconList = '{"icons":[{"title":"fab fa-500px","searchTerms":[]},{"title":"
 }
 .icon-preview .icon-wrapper i {
   font-size: 2vw;
+}
+
+.icon-select-preview i {
+    font-size: 3em;
+}
+
+.icon-select-preview {
+    padding: 5px;
 }
 </style>
