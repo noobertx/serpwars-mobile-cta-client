@@ -449,7 +449,7 @@ import NavBar from './components/NavBar.vue'
 // import ColorPicker from './components/ui/ColorPicker.vue'
 import SimpleColorPicker from './components/ui/SimpleColorPicker.vue'
 import NewUi from './components/ui/NewUi.vue'
-import ElementSelectDropdown from './components/ui/ElementSelectDropdown.vue'
+
 import SimpleIconPicker from './components/ui/SimpleIconPicker.vue'
 
 import MobileElements from './components/MobileElements.vue'
@@ -481,7 +481,6 @@ export default {
     InputSize,
     ContainerPresets,
     PageSelector,
-    ElementSelectDropdown,
     SimpleIconPicker,
     MobileElements,
     InputSize,
