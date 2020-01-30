@@ -408,7 +408,7 @@
         
       </div>
       <div class="col m7 " style="    display: flex;    justify-content: flex-end;">
-          <div class="serp-preview-wrap main-mockup" style="width: 100%;max-width: 616px;position: fixed;margin: 0; padding: 0; top: 15px;transform: scale(0.85);">
+          <div class="serp-preview-wrap main-mockup" style="width: 100%;max-width: 616px;position: fixed;margin: 0; padding: 0; top: 0;transform: scale(0.85);">
             <div class="serp-preview-screen" style=" max-width: 365px;width: 365px;">    
               <div class="serp-preview-content">
                 <div class="serp-preview-content-wrap" style="text-align:center;  position: absolute;
@@ -457,6 +457,7 @@ import MobileElements from './components/MobileElements.vue'
 
 import "toastify-js/src/toastify.css"
 import Toastify from 'toastify-js'
+import qs  from 'qs';
 
 
 
@@ -560,36 +561,26 @@ export default {
 
           var data ="";
 
-
-
-          $.post(ajaxurl,{
+          axios.post( ajaxurl, qs.stringify( {
             action:"load_item",
             id:fetch_id
-          },
-      function(data){
-        var  parseData = JSON.parse(data);
-
-        var  content = JSON.parse(parseData.content);
-
-        context.$store.state.loaded_data = content.loaded_data;
-        context.$store.state.container = content.container;
-        context.$store.state.title = parseData.title;
-
-
-        Toastify({
-          text: "Loaded CTA Buttons",
-          duration: 3000,
-          close: true,
-          gravity: "bottom", // `top` or `bottom`
-          position: 'right', // `left`, `center` or `right`
-          backgroundColor: "linear-gradient(to right, #47a3da, #4284f4)",
-          stopOnFocus: true // Prevents dismissing of toast on hover
-        }).showToast();
-
-        context.isLoaded = true;
-      })
-
- 
+          } ) ).then(response=>{
+              var  parseData = response.data;
+              var  content = JSON.parse(parseData.content);
+              context.$store.state.loaded_data = content.loaded_data;
+              context.$store.state.container = content.container;
+              context.$store.state.title = parseData.title;
+              Toastify({
+                text: "Loaded CTA Buttons",
+                duration: 3000,
+                close: true,
+                gravity: "bottom", // `top` or `bottom`
+                position: 'right', // `left`, `center` or `right`
+                backgroundColor: "linear-gradient(to right, #47a3da, #4284f4)",
+                stopOnFocus: true // Prevents dismissing of toast on hover
+              }).showToast();
+              context.isLoaded = true;
+          })
 
         }else{
 
@@ -631,17 +622,20 @@ export default {
         console.log(JSON.stringify(context.$store.state.loaded_data));
       }else{
         var context = this;
+        var title =  context.$store.state.title;
+        var loaded_data =  JSON.stringify(context.$store.state.loaded_data);
+        var container =  JSON.stringify(context.$store.state.container);
 
-        $.post(ajaxurl,{
+        console.log(title,loaded_data,container);
+
+        axios.post( ajaxurl, qs.stringify( {
             action:"save_item",
             id:fetch_id,
-            title:context.$store.state.title,
-            loaded_data:context.$store.state.loaded_data,
-            container:context.$store.state.container,
-          },
-          function(data){
-            var d = JSON.parse(data);
-
+            title:title,
+            loaded_data:loaded_data,
+            container:container,
+          } ) ).then(response=>{
+            var d = response.data;
             Toastify({
               text: d.status+" "+d.message,
               duration: 3000,
@@ -658,7 +652,35 @@ export default {
                 location.href=location.search+"&id="+d.return_id
               },2500)
             }
-          })
+        })
+
+        // $.post(ajaxurl,{
+        //     action:"save_item",
+        //     id:fetch_id,
+        //     title:context.$store.state.title,
+        //     loaded_data:context.$store.state.loaded_data,
+        //     container:context.$store.state.container,
+        //   },
+        //   function(data){
+        //     var d = JSON.parse(data);
+
+        //     Toastify({
+        //       text: d.status+" "+d.message,
+        //       duration: 3000,
+        //       close: true,
+        //       gravity: "bottom", // `top` or `bottom`
+        //       position: 'right', // `left`, `center` or `right`
+        //       backgroundColor: "linear-gradient(to right, #47a3da, #4284f4)",
+        //       stopOnFocus: true // Prevents dismissing of toast on hover
+        //     }).showToast();
+        //     if(d.return_id==-1){              
+        //       context.isSaving = false;
+        //     }else{
+        //       setTimeout(function(){
+        //         location.href=location.search+"&id="+d.return_id
+        //       },2500)
+        //     }
+        //   })
       }
     },
     setcurrentItem:function(e){
@@ -804,7 +826,7 @@ ul.element-selector a:hover {
   
   .main-mockup{
      background-image:url("./assets/27709270.png");
-    background-size: 62.22% 108%;
+    background-size: 62.22% 100%;
     /* height: 650px; */
     background-position-x: 81%;
     background-position-y: -3%;
@@ -815,7 +837,7 @@ ul.element-selector a:hover {
   }
   .serp-preview-content{
    
-    height: 650px;
+    height: 700px;
   }
   .input_number{
     max-width: 100%;
