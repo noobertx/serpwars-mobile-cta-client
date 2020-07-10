@@ -6,6 +6,7 @@
 	</div>
 </template>
 <script>
+	import axios from 'axios';
 	export default{
 		name:"PageSelector",
 		props:[
@@ -45,7 +46,7 @@
           		context.$store.state.page_selections = JSON.parse('[{"ID":"471","post_title":"Auto Draft"},{"ID":"2","post_title":"About Us"},{"ID":"19","post_title":"Contact Us"},{"ID":"156","post_title":"Home"},{"ID":"158","post_title":"Services"},{"ID":"160","post_title":"Portfolio"},{"ID":"162","post_title":"Gallery"},{"ID":"164","post_title":"Blog"},{"ID":"235","post_title":"Frequently Asked Questions (FAQ)"},{"ID":"473","post_title":"Test Frontend"},{"ID":"470","post_title":"Auto Draft"},{"ID":"1","post_title":"Blog Post Title"}]');
           		// console.log(context.selections);
       		}else{
-          		$.post(ajaxurl,{
+          		axios.post(ajaxurl,{
             		action:"ca_get_pages"
           			},function(data){
               			context.$store.state.page_selections = JSON.parse(data);
