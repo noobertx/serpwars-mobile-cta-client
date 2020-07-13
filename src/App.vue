@@ -14,399 +14,33 @@
 
 
 
-  
-    <div class="row">
-       <container-presets></container-presets>   
-    </div>
+    <b-row>
+       <b-col cols="12" sm="12">
+          <container-presets></container-presets>   
+       </b-col>
+    </b-row>
     <div class="row">
       <!-- <element-select-dropdown :loaded_data='loaded_data'></element-select-dropdown> -->
       <!-- <a href="#" class="btn red white-text" @click="deleteElement" v-show="showDelete"><i class="fa fa-times"></i> Delete This Element</a> -->
 
     </div>
     <div class="row" @elementSelected="test" >
-      <div class="col m5 " id = "serp-settings-wrap">
-         
-
-               <vue-tiny-tabs id="mytabs" :anchor="false" :closable="false" :hideTitle="true"  v-if="$store.state.loaded_data.length>0 && $store.state.current_item!=-1">
-          <div class="section" id="component">
-             <h3 class="title">Content</h3>
-            <div class="settings">
-                  <div class="row" style="display: none;">
-                    <div class="col m12">
-                               <div class="ca-button-type field_group" >          
-           <label for="">Type</label>  
-          <select name="button_type" class="button-type browser-default"  style = "width: 100%; padding: 5px 10px;" v-model="$store.state.loaded_data[$store.state.current_item].type">
-             <option v-for="option in [
-      { text: '<i class=\'fa fa-cog\'></i>  Custom button', value: 'custom' }
-    ]" v-bind:value="option.value" v-html="option.text" v-bind:key="option.value">{{ option.text }}</option>
-           </select>
-<!-- 
-           <color-picker item="main" field="background"></color-picker> -->
-        </div> 
-                    </div>
-                  </div>
-
-              <accordion title="Buttons">
-                <div class="accordion-content">
-                  <div class="row field_group">
-                    <div class="col m4">
-                        <label >Link Text </label>
-                    </div>                  
-                    <div class="col m8">                      
-                      <input type="text" class="serp-textfield browser-default" name="button_text" v-model="$store.state.loaded_data[$store.state.current_item].link_text">                    
-                    </div>
-                  </div>
-                  <div class="row field_group">
-                    <div class="col m4">
-                      <label > URL</label>
-                    </div>
-                    <div class="col m8">
-                      <input type="text" class="serp-textfield browser-default" name="button_text" v-model="$store.state.loaded_data[$store.state.current_item].link_path">
-                    </div>
-                  </div>
-                  <div class="row">
-                      <div class="col m12">
-                        <input-size label="Text Size" :item="$store.state.loaded_data[$store.state.current_item].style.text" :units="['px','em','rem','%']"></input-size>
-                      </div>
-                  </div>
-                  <div class="row field_group">
-                    <div class="col m4">                      
-                      <label>Text Color</label>
-                    </div>
-                    <div class="col m8">
-                      <simple-color-picker item="text" field="color" ></simple-color-picker>
-                    </div> 
-                  </div>
-
-                  <div class="row field_group">
-                    <div class="col m4">                      
-                      <label>Background</label>
-                    </div>                    
-                    <div class="col m8">
-                      <simple-color-picker item="main" field="background" ></simple-color-picker>
-                    </div>                                       
-                  </div>
-
-
-                </div>
-                <div class="accordion-content">
-                  <div class="row">
-                    <div class="col m12">
-                      
- 
-  </div>
-  </div>
-                <div class="row ca-content-visibility field_group">
-                  <div class="col m4">       
-                     <label for="">Content Visibility</label>  
-                  </div>
-                  <div class="col m8">       
-                        <select name="content_visibility" class="browser-default"  v-model="$store.state.loaded_data[$store.state.current_item].content_visibility">
-                           <option v-for="option in [
-                    { text: 'Show All', value: '' },
-                    { text: 'Show Text Only', value: 'text_only' },
-                    { text: 'Show Icon Only', value: 'icon_only' }
-                  ]" v-bind:value="option.value" v-bind:key="option.text">{{ option.text }}</option>
-                         </select>
-                      
-                  </div>
-                </div>
-
-                <div class="row ca-content-visibility field_group">
-                  <div class="col m4">     
-                     <label for="">Content Layout</label>  
-                  </div>
-                  <div class="col m8">     
-                        <select name="content_layout"  class= "browser-default" v-model="$store.state.loaded_data[$store.state.current_item].style.main.layout">
-                           <option v-for="option in [
-                    { text: 'Side Icon', value: '' },
-                    { text: 'Top Icon', value: 'vertical' }
-
-                  ]" v-bind:value="option.value" v-bind:key="option.text">{{ option.text }}</option>
-                         </select>
-                  </div>
-                </div>
-                    <div class="ca-content-alignment field_group row " >  
-                    <div class="col m4">                      
-                        <label for="" >Content Position</label>  
-                    </div>        
-            <div class="col m8">              
-              <select name="layout" class="browser-default"  v-model="$store.state.container.layout" >
-                <option disabled value="left">Please select one</option>
-                <option v-for="option in [
-      { text: 'Left', value: 'start' },
-      { text: ' Center', value: 'center' },
-      { text: ' Right', value: 'right' },
-      { text: 'Space Around', value: 'space_around' },
-      { text: ' Space in Between', value: 'space_between' },
-      { text: ' Space Evenly', value: 'space_evenly' }
-    ]" v-bind:value="option.value" v-html="option.text" v-bind:key="option.text">{{ option.text }}</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="container_width field_group row ">  
-              <div class="col m4">                
-                <label for="" >Content Width</label> 
-              </div>        
-   <div class="col m8"> 
-       <select name="layout" class="browser-default"  v-model="$store.state.container.width" >
-      <option v-for="option in [
-        { text: ' Custom', value: 'custom' },
-        { text: 'Auto', value: 'auto' },
-        { text: ' Min Content', value: 'min-content' },
-        { text: ' Max Content', value: 'max-content' },
-        { text: 'Fill Space Available', value: '-webkit-fill-available' }      
-    ]" v-bind:value="option.value" v-html="option.text" v-bind:key="option.text">{{ option.text }}</option>
-      </select>
-   </div>
-   
-    
-</div>
-<div v-if="$store.state.container.width=='custom'" class="row field_group">
-      <div class="col m12">                   
-        <input-size label="Width" :item="$store.state.container.cw" :units="['px','em','rem','%']"></input-size>
-      </div>
-    </div>
-                </div>
-                <div class="accordion-content">
-                  
-                </div>                
-              </accordion> 
-
-              <accordion title="Icon">
-                <div class="accordion-content">
-                  <div class="row">
-                    <div class="col m12">
-
-                      <simple-icon-picker ></simple-icon-picker>              
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col m12">
-                    
-                      <input-size label="Icon Size" :item="$store.state.loaded_data[$store.state.current_item].style.icon" :units="['px','em','rem','%']"></input-size>
-                    </div>
-                  </div>
-                  <div class="row field_group">
-                    <div class="col m4">
-                      <label>Icon Color</label>
-                    </div>
-                    <div class="col m8">
-                      <simple-color-picker item="icon" field="color" ></simple-color-picker>
-                    </div>
-                  </div>
-                </div>
-              </accordion>
-           
-                  <div class="ca-button-alignment" style="display: none">          
-                         <label for="">Position</label>  
-                        <select name="button_position" class="browser-default"  v-model="$store.state.loaded_data[$store.state.current_item].text_position">
-                           <option v-for="option in [
-                    { text: 'Left', value: 'left' },
-                    { text: 'Center', value: 'center' },
-                    { text: 'Right', value: 'right' }
-                  ]" v-bind:value="option.value" v-bind:key="option.value">{{ option.text }}</option>
-                         </select>
-                      </div>
- 
-
-   
-
-        <div class="ca-button-alignment " style="display: none">          
-           <label for="">Content Position</label>  
-          <select name="button_content_position" class="browser-default"  v-model="$store.state.loaded_data[$store.state.current_item].button_content_position">
-             <option v-for="option in [
-      { text: 'Left', value: 'left' },
-      { text: 'Center', value: 'center' },
-      { text: 'Right', value: 'right' }
-    ]" v-bind:value="option.value" v-bind:key="option.text">{{ option.text }}</option>
-           </select>
-        </div> 
-
-
-
-              
-            
-            </div>
-         
-              
-              <accordion title="Size">
-                <div class="accordion-content field_group">
-                  <label for="auto_width">                    
-                  <input type="checkbox" name="auto_width" id="auto_width" true-value="true" false-value="" v-model="$store.state.loaded_data[$store.state.current_item].style.main.adjust_width"> Adjust the Width
-                  </label>
-                  <label for="auto_height">                    
-                  <input type="checkbox" name="auto_height" id="auto_height" true-value="true" false-value="" v-model="$store.state.loaded_data[$store.state.current_item].style.main.adjust_height"> Adjust Height
-                  </label>
-
-                  <div class="range-wrap" v-if="showRangeWidth">
-                   
-                     <input-size label="Width" :item="$store.state.loaded_data[$store.state.current_item].style.main.width" :units="['px','em','rem','%']"></input-size>
-                  </div>
-                  <div class="range-wrap" v-if="showRangeHeight">
-                     <input-size label="Height" :item="$store.state.loaded_data[$store.state.current_item].style.main.height" :units="['px','em','rem','%']"></input-size>
-                    
-                  </div>
-                </div>
-              </accordion>
-           
-              
-              <accordion title="Border">
-                <div class="accordion-content">
-                  <div class="row">
-                    <div class="col m12 field_group">
-                      <label for="border_option"> 
-                      <input type="checkbox" name="display_border" id="display_border" true-value="true" false-value=""  v-model="$store.state.loaded_data[$store.state.current_item].style.border.enable"> Adjust Border
-                      </label>
-                    </div>
-                    <div class="col m12 field_group">
-                      <label for="border_option"> 
-                      <input type="checkbox" name="display_border_radius" id="display_border_radius" true-value="true" false-value=""  v-model="$store.state.loaded_data[$store.state.current_item].style.border_radius.enable"> Adjust Border Radius
-                      </label>
-                    </div>
-                  </div>
-                  <div class="row field_group" v-if="showBorder"> 
-
-                    <div class="col m6">
-                      <label>Size (px)</label>
-                      <input type="number" class = "input_number" v-model="$store.state.loaded_data[$store.state.current_item].style.border.size">
-                    </div>
-                    <div class="col m6">
-                      <label>Style</label>
-                      <select name="border_style"  class="browser-default" v-model="$store.state.loaded_data[$store.state.current_item].style.border.style">
-                           <option v-for="option in [
-                    { text: 'Solid', value: 'solid' },
-                    { text: 'Dotted', value: 'dotted' },
-                    { text: 'Dashed', value: 'dashed' },
-                    { text: 'Double', value: 'double' },
-                    { text: 'Groove', value: 'groove' },
-                    { text: 'Ridge', value: 'ridge' },
-                    { text: 'Inset', value: 'inset' },
-                    { text: 'Outset', value: 'outset' }
-                  ]" v-bind:value="option.value" v-bind:key="option.text">{{ option.text }}</option>
-                         </select>
-                    </div>
-                    <div class="col m12">
-                      <label>Color</label>
-                       <simple-color-picker item="border" field="color" ></simple-color-picker>
-                    </div>
-                  </div>
-                  <div class="row" v-if="showBorder">
-                  <div class="col m12">
-                      Enable Border 
-                    </div> 
-                    <div class="col m6 field_group">
-                      <label for="border_option"> 
-                      <input type="checkbox" name="display_button_icon" id="display_button_icon" true-value="true" false-value="" v-model="$store.state.loaded_data[$store.state.current_item].style.sides.top"> Top
-                      </label>
-                    </div>
-                    <div class="col m6 field_group">
-                      <label for="border_option"> 
-                      <input type="checkbox" name="display_button_icon" id="display_button_icon" true-value="true" false-value="" v-model="$store.state.loaded_data[$store.state.current_item].style.sides.right"> Right
-                      </label>
-                    </div>
-                    <div class="col m6 field_group">
-                      <label for="border_option"> 
-                      <input type="checkbox" name="display_button_icon" id="display_button_icon" true-value="true" false-value="" v-model="$store.state.loaded_data[$store.state.current_item].style.sides.bottom">Bottom
-                      </label>
-                    </div>
-                    <div class="col m6 field_group">
-                      <label for="border_option"> 
-                      <input type="checkbox" name="display_button_icon" id="display_button_icon" true-value="true" false-value="" v-model="$store.state.loaded_data[$store.state.current_item].style.sides.left"> Left
-                      </label>
-                    </div>
-                  </div>
-                  <div class="row" v-if="showBorderRadius"> 
-                    <div class="col m12">
-                      Border Radius
-                    </div>
-                  </div>
-                  <div class="row" v-if="showBorderRadius"> 
-                    <div class="col m6 field_group">
-                      <label>Top-Left (px)</label>
-                      <input type="number" class = "input_number" v-model="$store.state.loaded_data[$store.state.current_item].style.border_radius.top_left"></div>
-                    <div class="col m6 field_group">
-                      <label>Top-Right (px)</label>
-                      <input type="number" class = "input_number" v-model="$store.state.loaded_data[$store.state.current_item].style.border_radius.top_right"></div>
-                    <div class="col m6 field_group">
-                      <label>Bottom-Left (px)</label>
-                      <input type="number" class = "input_number" v-model="$store.state.loaded_data[$store.state.current_item].style.border_radius.bottom_left"></div>
-                    <div class="col m6 field_group">
-                      <label>Bottom-Right (px)</label>
-                      <input type="number" class = "input_number" v-model="$store.state.loaded_data[$store.state.current_item].style.border_radius.bottom_right"></div>
-                  </div>
-                </div>
-              </accordion>
-              <accordion title="Margins">
-                <div class="accordion-content">
-                  <div class="row ">
-                    <div class="col m6 field_group">
-                      <label>Top (px)</label>
-                      <input type="number" class = "input_number" v-model="$store.state.loaded_data[$store.state.current_item].style.main.margin.top"></div>
-                    <div class="col m6 field_group">
-                      <label>Right (px)</label>
-                      <input type="number" class = "input_number" v-model="$store.state.loaded_data[$store.state.current_item].style.main.margin.right"></div>
-                    <div class="col m6 field_group">
-                      <label>Bottom (px)</label>
-                      <input type="number" class = "input_number" v-model="$store.state.loaded_data[$store.state.current_item].style.main.margin.bottom"></div>
-                    <div class="col m6 field_group">
-                      <label>Left (px)</label>
-                      <input type="number" class = "input_number" v-model="$store.state.loaded_data[$store.state.current_item].style.main.margin.left"></div>
-                  </div>
-                </div>
-              </accordion>
-              
-          </div> 
-          <div class="section" id="advance">
-            <h3 class="title">Advanced</h3>
-              <div class="row">
-                <div class="col m12">
-                   <label for="exclusive_page">                    
-                  <input type="checkbox" name="exclusive_page" id="exclusive_page"  v-model="$store.state.loaded_data[$store.state.current_item].exclusive_page" true-value="true" false-value=""> Show Only On Specific Page
-                  </label>
-                  <div v-if="displayExclusivePage">
-                    <page-selector field="pages" :item="$store.state.loaded_data[$store.state.current_item]"></page-selector>                    
-                  </div>
-                </div>
-              </div>
-             <accordion title="Google Tag Manager">              
-
-                
-                <div class="row field_group">
-                  <label class="col m3">
-                    Category 
-                  </label>
-                  <span class="col m9">                    
-                    <input type="text" class="serp-textfield browser-default" name="button_text" v-model="$store.state.loaded_data[$store.state.current_item].gtm.category">                    
-                  </span>
-                </div>
-                <div class="row field_group">
-                  <label class="col m3">
-                    Label 
-                  </label>
-                  <span class="col m9">                    
-                    <input type="text" class="serp-textfield browser-default" name="button_text" v-model="$store.state.loaded_data[$store.state.current_item].gtm.label">                    
-                  </span>
-                </div>
-                <div class="row field_group">
-                  <label class="col m3">
-                    Value 
-                  </label>
-                  <span class="col m9">                    
-                    <input type="text" class="serp-textfield browser-default" name="button_text" v-model="$store.state.loaded_data[$store.state.current_item].gtm.value">                    
-                  </span>
-                </div>
-            </accordion>
-          </div>
-        </vue-tiny-tabs>
-        <div class="row">
-          <div class="col m12">
+      <div class="col m5 " id = "serp-settings-wrap">         
+        <b-tabs content-class="mt-3">
+          <b-tab title="CONTENT" active>
+            <content-settings></content-settings>            
+          </b-tab>
+          <b-tab title="ADVANCE">
+            <advance-settings></advance-settings>
+          </b-tab>
+        </b-tabs>
+        <b-row>
+          <b-col cols="12" sm="12">
             <a href="#" class="btn blue btn-block save_btn" @click="savingData" :class="{ disabled: isSaving }"><i class="fa fa-save"></i> Save Changes</a>
-          </div>
-        </div>
-        
+          </b-col>
+        </b-row>          
       </div>
+
       <div class="col m7 " style="    display: flex;    justify-content: flex-end;">
           <div class="serp-preview-wrap main-mockup" style="width: 100%;max-width: 616px;position: fixed;margin: 0; padding: 0; top: 0;transform: scale(0.85);">
             <div class="serp-preview-screen" style=" max-width: 365px;width: 365px;">    
@@ -453,6 +87,9 @@ import NewUi from './components/ui/NewUi.vue'
 import SimpleIconPicker from './components/ui/SimpleIconPicker.vue'
 
 import MobileElements from './components/MobileElements.vue'
+import ContentSettings from './components/ContentSettings.vue'
+import AdvanceSettings from './components/AdvanceSettings.vue'
+
 
 import "toastify-js/src/toastify.css"
 import Toastify from 'toastify-js'
@@ -483,6 +120,8 @@ export default {
     PageSelector,
     SimpleIconPicker,
     MobileElements,
+    ContentSettings,
+    AdvanceSettings,
     InputSize,
     NavBar,
     'vue-tiny-tabs': VueTinyTabs
@@ -502,30 +141,14 @@ export default {
     selectLayout(el){
 
 
-    },
-    showRangeWidth(){
-      var context = this;
-        return (context.$store.state.loaded_data[context.$store.state.current_item].style.main.adjust_width=="true");      
-    },
-    showRangeHeight(){
-      var context = this;
-        return (context.$store.state.loaded_data[context.$store.state.current_item].style.main.adjust_height=="true");      
-    },
-    showBorder(){
-      var context = this;
-      return (context.$store.state.loaded_data[context.$store.state.current_item].style.border.enable=="true");      
-    },
+    },    
+
     showDelete:function(){
       // console.log(this.$store.state.loaded_data.length);
       return (this.$store.state.loaded_data.length>0);
     },
-    showBorderRadius(){
-      var context = this;
-      return (context.$store.state.loaded_data[context.$store.state.current_item].style.border_radius.enable=="true");      
-    },
-    displayExclusivePage(){
-      return (this.$store.state.loaded_data[this.$store.state.current_item].exclusive_page=="true");      
-    }
+    
+    
   }
   ,mounted(){
 
@@ -848,7 +471,12 @@ ul.element-selector a:hover {
     line-height: 28px;
     color: #333;
   }
-
+  .preset-selector{
+    width:100%;
+  }
+  .preset-selector ul{
+    list-style: none;
+  }
   .preset-selector ul li:nth-child(1) .imgwrap{
     background:url("././assets/01.jpg");;
   }
@@ -919,7 +547,7 @@ nav.tabs {
     padding: 0 10px;
 }
   .tabs{
-    height: 30px;
+    /*height: 30px;*/
   }
   .tinytabs .tabs .tab{
     font-size: 12px;
