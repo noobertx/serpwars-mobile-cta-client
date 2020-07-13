@@ -10,6 +10,16 @@
 		</b-row>
 		<b-row>
 			<b-col cols="4" sm="12">
+				<label >Sub Text </label>
+			</b-col>
+			<b-col cols="8" sm="12">
+				<!-- No model Set yet -->
+				<!-- v-model="$store.state.loaded_data[$store.state.current_item].sub_text" -->
+				<input type="text" class="serp-textfield browser-default" name="sub_text" >  
+			</b-col>
+		</b-row>
+		<b-row>
+			<b-col cols="4" sm="12">
 				<label >URL </label>
 			</b-col>
 			<b-col cols="8" sm="12">
