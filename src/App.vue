@@ -42,19 +42,14 @@
       </div>
 
       <div class="col m7 " style="    display: flex;    justify-content: flex-end;">
-          <div class="serp-preview-wrap main-mockup" style="width: 100%;max-width: 616px;position: fixed;margin: 0; padding: 0; top: 0;transform: scale(0.85);">
+          <div class="serp-preview-wrap main-mockup" style="width: 100%;max-width: 626px;position: fixed;margin: 0; padding: 0; top: 0;transform: scale(0.85);">
             <div class="serp-preview-screen" style=" max-width: 365px;width: 365px;">    
               <div class="serp-preview-content">
                 <div class="serp-preview-content-wrap" style="text-align:center;  position: absolute;
-    left: 34.9%;top:62px" >
+    left: 35%;top:62px" >
                   <div class="serp-preview-content-area"> 
                   <div class="serp-preview-body" @elementSelected="test" style="width: 320px;margin: 0 auto;height: 519px;overflow: hidden;">
-                      <div class="serpwars-header">       
-                      </div>
-                      <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit in tempore quia consectetur reprehenderit, accusantium adipisci debitis nulla, dignissimos, nesciunt itaque, fugiat consequuntur iste. Ab veniam facilis itaque veritatis repellendus.</p>
-                      <p>Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.</p>
-                      <p >Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna.</p>
-                      <p style="display:none;">Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero</p>
+                      <div class="serp-preview-body-full-content"></div>
                     </div>
                   </div>          
                   <mobile-elements :loaded_data='loaded_data' :current_item="current_item" @ItemIndexSelected="setcurrentItem"></mobile-elements>
@@ -367,6 +362,12 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
 }
+.serp-preview-body-full-content{
+    background-image:url("./assets/mock-bg.png");
+    height: 100%;
+    margin-top: 60px;
+    margin-left: 5px;
+}
 .ca_submenu {
     display: none;
     position: absolute;
@@ -567,7 +568,8 @@ nav.tabs {
 }
 
 .serp-preview-body>p {
-    padding: 0 5px;
+    padding: 0 5px
+      .serp-preview-body-full-content;
 }
 
 a.btn.blue.btn-block.save_btn:hover {

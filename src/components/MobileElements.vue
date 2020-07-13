@@ -146,7 +146,8 @@
 </script>
 <style>
 .serp-button-collections>ul{
-	margin: 0
+	margin: 0;
+	padding: 0;
 }
 .serp-button-collections>ul>div {
 display: flex;
@@ -176,8 +177,8 @@ position: relative;
 }
 .serp-button-collections-wrap{
 	position: absolute;
-	bottom:-11px;
-	left: 0;
+	bottom:-10px;
+	left: 5px;
 	right: 0;
 }
 .vertical span {
