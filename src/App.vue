@@ -506,7 +506,8 @@ ul.element-selector a:hover {
     background:url("././assets/07.jpg");;
   }
   .preset-selector ul {
-    width: 47%;
+    width: 80%;
+    padding: 0;
   }
 
   select.button_type{
@@ -532,6 +533,10 @@ input.serp-textfield browser-default,.form-group .minicolors-input {
 }
 .serp-textfield {
     width: 100%;
+    border: 1px solid #ced4da;
+    padding: 6px 14px;
+    border-radius: 5px;
+    font-size: 1rem;
 }
 
 .field_group .form-group {

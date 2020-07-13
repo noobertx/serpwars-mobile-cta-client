@@ -1,6 +1,7 @@
 <template>
 	<div class="page-selector-wrap">
-		<select multiple name="selections[]"  class = "pageSelector browser-default" v-on:change="changed" v-model='getValues'>
+
+		<select multiple name="selections[]"  class = "pageSelector browser-default" style="width:100%" v-on:change="changed" v-model='getValues'>
 			<option v-for="option in $store.state.page_selections" v-bind:value="option.ID" v-html="option.post_title" v-bind:key="option.post_id">{{ option.text }}</option>			
 		</select>
 	</div>

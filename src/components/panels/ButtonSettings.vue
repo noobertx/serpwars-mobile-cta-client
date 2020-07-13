@@ -95,7 +95,7 @@
 		</b-row>
 		<b-row v-if="$store.state.container.width=='custom'">
 			<b-col cols="12" sm="12">
-				<input-size label="Width" :item="$store.state.container.cw" :units="['px','em','rem','%']"></input-size>
+				<input-size label="Width" :item="$store.state.container.cw" :max="320" :units="['px','em','rem','%']"></input-size>
 			</b-col>
 		</b-row>
 		<b-row>

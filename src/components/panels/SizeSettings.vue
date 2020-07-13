@@ -12,7 +12,7 @@
 		</b-row>
 		<b-row  v-if="showRangeWidth">
 			<b-col cols="12" sm="12">
-				<input-size label="Width" :item="$store.state.loaded_data[$store.state.current_item].style.main.width" :units="['px','em','rem','%']"></input-size>
+				<input-size label="Width" :item="$store.state.loaded_data[$store.state.current_item].style.main.width" :max="320" :units="['px','em','rem','%']"></input-size>
 			</b-col>
 		</b-row>
 		<b-row v-if="showRangeHeight">
@@ -33,13 +33,13 @@
     	},
     	computed:{
     		showRangeWidth(){
-      var context = this;
-        return (context.$store.state.loaded_data[context.$store.state.current_item].style.main.adjust_width=="true");      
-    },
-    showRangeHeight(){
-      var context = this;
-        return (context.$store.state.loaded_data[context.$store.state.current_item].style.main.adjust_height=="true");      
-    },
+    		  var context = this;
+    		    return (context.$store.state.loaded_data[context.$store.state.current_item].style.main.adjust_width=="true");      
+    		},
+    		showRangeHeight(){
+    		  var context = this;
+    		    return (context.$store.state.loaded_data[context.$store.state.current_item].style.main.adjust_height=="true");      
+    		},
     	},
     	components: {
       		InputSize

@@ -1,19 +1,19 @@
 <template>
 	<div class="size-wrapper">
-		<div class="row field_group">
-			<div class="col m4">
+		<div class="row field_group pt-2 pb-2">
+			<div class="col-3 mt-2">
 				<label for="">
 					{{label}}					
 				</label>
 			</div>
-			<div class="col m3">
-				<input type="number"  v-model="item.size" :step="getStep">
+			<div class="col-6 mt-2">
+				<b-form-input id="range-1" v-model="item.size" type="range"  :max="max" :step="getStep"></b-form-input>
 			</div>		
-			<div class="col m5">
-
-				<select name="selected" v-model="item.unit" class="unit-selector browser-default">
-					<option v-for="unit in units" v-bind:value="unit" v-html="unit" v-bind:key="unit">{{ unit }}</option>	
-				</select>
+			<div class="col-1 text-right mt-0 p-0">
+				<input type="number"  v-model="item.size" :step="getStep" style="font-size: 1rem; padding: 6px 4px;border: 1px solid #ced4da;">				
+			</div>
+			<div class="col-2 p-0 pr-3">
+				<b-form-select v-model="item.unit" :options="units" disabled-field="notEnabled"></b-form-select>				
 			</div>		
 		</div>
 	</div>
@@ -24,6 +24,7 @@
 		props:[
 			'label',
 			'item',
+			'max',
 			'units'
 		],
 		data(){
@@ -32,7 +33,7 @@
 			}
 		},
 		mounted(){
-
+			console.log(this.max);
 		},
 		computed:{
 			getStep(){
