@@ -9,23 +9,27 @@
       </div>
     </div>
     <div class="mobile-cta-app-wrap" v-if="isLoaded">
-      <div class="app-title">Button Name</div>
-      <input type="text" v-model="$store.state.title" class="serp-textfield browser-default" style="width:42%">
-
-
-
-    <b-row>
+    <div class="row bg-primary text-light p-3">
        <b-col cols="12" sm="12">
-          <container-presets></container-presets>   
-       </b-col>
-    </b-row>
+          <div class="app-title">CTA Name</div>
+          <input type="text" v-model="$store.state.title" class="serp-textfield browser-default" style="width:42%">
+      </b-col>
+    </div>
+
+
+    <div class="row">
+      <div style="background:#fff;    width: 48.7%;">
+         <container-presets></container-presets>   
+      </div>
+    </div>
+
     <div class="row">
       <!-- <element-select-dropdown :loaded_data='loaded_data'></element-select-dropdown> -->
       <!-- <a href="#" class="btn red white-text" @click="deleteElement" v-show="showDelete"><i class="fa fa-times"></i> Delete This Element</a> -->
 
     </div>
     <div class="row" @elementSelected="test" >
-      <div class="col m5 " id = "serp-settings-wrap">         
+      <div class="col m6 " id = "serp-settings-wrap" style="background:#fff;">         
         <b-tabs content-class="mt-3">
           <b-tab title="CONTENT" active>
             <content-settings></content-settings>            
@@ -334,6 +338,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   margin-top: 25px;
+  background: #eee;
 }
 .container {
     width: 85%!important;
@@ -400,6 +405,7 @@ export default {
     color: #fff!important;
 
 }
+
 .preset-selector a,.preset-selector a:hover{
   color: #039be5!important;
 }
