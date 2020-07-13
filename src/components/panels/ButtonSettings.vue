@@ -22,19 +22,17 @@
 			</b-col>
 		</b-row>
 		<b-row>
-			<b-col cols="4" sm="12">
+			<b-col cols="4" sm="4">
 				<label >Text Color </label>
-			</b-col>
-			<b-col cols="8" sm="12">
 				 <simple-color-picker item="text" field="color" ></simple-color-picker>
 			</b-col>
-		</b-row>
-		<b-row>
-			<b-col cols="4" sm="12">
+			<b-col cols="4" sm="4">
 				<label >Background</label>
+				<simple-color-picker item="main" field="background" ></simple-color-picker>
 			</b-col>
-			<b-col cols="8" sm="12">
-				 <simple-color-picker item="main" field="background" ></simple-color-picker>
+			<b-col cols="4" sm="4">
+				<label >Icon</label>
+				<simple-color-picker item="icon" field="color" ></simple-color-picker>
 			</b-col>
 		</b-row>
 		<b-row>

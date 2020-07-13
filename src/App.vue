@@ -591,5 +591,9 @@ a.btn.blue.btn-block.save_btn:hover {
   padding: 0;
 }
 
-
+.form-group legend,label,.field_group label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #555;
+}
 </style>

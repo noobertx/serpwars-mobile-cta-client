@@ -101,23 +101,36 @@
 	position:relative;
 }
 .serp-color-picker input.form-control {
-    padding-left: 40px!important;
+    padding-left: 35px!important;
     border: none!important;
-    height: 1.75em!important;
+    /*height: 1.25em!important;*/
+    padding-top: 6px;
+    padding-bottom: 6px;
+    color: #555;
+    font-size: 14px;
+    border-radius:5px;
 }
-
-.serp-color-picker span.current-color {
+span.input-group-addon.color-picker-container {
     position: absolute;
+    border: 1px solid #ddd;
+    border-top:none;
+    border-bottom:none;
+    border-left:none;
+}
+.serp-color-picker span.current-color {
+    /*position: absolute;*/
     top: 0;
-    height: 32px!important;
+    height: 35px!important;
     width: 32px!important;
-    border-radius: 200px!important;
+    /*border-radius: 200px!important;*/
     cursor: pointer;
     display: block;
 }
 
 .input-group.serp-color-picker {
     position: relative;
+    border: 1px solid #ddd;
+    width: 75%;
 }
 
 .serp-color-picker input.form-control:focus {
