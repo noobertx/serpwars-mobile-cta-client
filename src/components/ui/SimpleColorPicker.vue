@@ -132,6 +132,8 @@ span.input-group-addon.color-picker-container {
     border: 1px solid #ddd;
     width: 75%;
 }
+.col-sm-3 .input-group.serp-color-picker {width: 100%;}
+.col-sm-4 .input-group.serp-color-picker {width: 75%;}
 
 .serp-color-picker input.form-control:focus {
     border:none!important;

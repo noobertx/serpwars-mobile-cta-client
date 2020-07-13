@@ -12,10 +12,8 @@
 			<b-col cols="4" sm="12">
 				<label >Sub Text </label>
 			</b-col>
-			<b-col cols="8" sm="12">
-				<!-- No model Set yet -->
-				<!-- v-model="$store.state.loaded_data[$store.state.current_item].sub_text" -->
-				<input type="text" class="serp-textfield browser-default" name="sub_text" >  
+			<b-col cols="8" sm="12">						
+				<input type="text" class="serp-textfield browser-default" name="sub_text" v-model="$store.state.loaded_data[$store.state.current_item].sub_text">  
 			</b-col>
 		</b-row>
 		<b-row>
@@ -32,15 +30,24 @@
 			</b-col>
 		</b-row>
 		<b-row>
-			<b-col cols="4" sm="4">
+			<b-col cols="12" sm="12">
+				<input-size label="Sub Size" :item="$store.state.loaded_data[$store.state.current_item].style.sub_text" :units="['px','em','rem','%']"></input-size>
+			</b-col>
+		</b-row>
+		<b-row>
+			<b-col cols="3" sm="3">
 				<label >Text Color </label>
 				 <simple-color-picker item="text" field="color" ></simple-color-picker>
 			</b-col>
-			<b-col cols="4" sm="4">
+			<b-col cols="3" sm="3">
+				<label >Sub Text Color </label>
+				 <simple-color-picker item="sub_text" field="color" ></simple-color-picker>
+			</b-col>
+			<b-col cols="3" sm="3">
 				<label >Background</label>
 				<simple-color-picker item="main" field="background" ></simple-color-picker>
 			</b-col>
-			<b-col cols="4" sm="4">
+			<b-col cols="3" sm="3">
 				<label >Icon</label>
 				<simple-color-picker item="icon" field="color" ></simple-color-picker>
 			</b-col>

@@ -273,43 +273,13 @@ export default {
             }
         })
 
-        // $.post(ajaxurl,{
-        //     action:"save_item",
-        //     id:fetch_id,
-        //     title:context.$store.state.title,
-        //     loaded_data:context.$store.state.loaded_data,
-        //     container:context.$store.state.container,
-        //   },
-        //   function(data){
-        //     var d = JSON.parse(data);
-
-        //     Toastify({
-        //       text: d.status+" "+d.message,
-        //       duration: 3000,
-        //       close: true,
-        //       gravity: "bottom", // `top` or `bottom`
-        //       position: 'right', // `left`, `center` or `right`
-        //       backgroundColor: "linear-gradient(to right, #47a3da, #4284f4)",
-        //       stopOnFocus: true // Prevents dismissing of toast on hover
-        //     }).showToast();
-        //     if(d.return_id==-1){              
-        //       context.isSaving = false;
-        //     }else{
-        //       setTimeout(function(){
-        //         location.href=location.search+"&id="+d.return_id
-        //       },2500)
-        //     }
-        //   })
       }
     },
     setcurrentItem:function(e){
       this.current_item = e;
-      // console.log(this.loaded_data[e].style.main.background);
-     // console.log("eeee"+e);
     },
     deleteElement:function(){
       this.$store.state.loaded_data.splice(this.$store.state.current_item,1)
-      // console.log(this.$store.state.current_item)
     },
     fetchStoreData:function(){
       var context = this;
@@ -318,11 +288,9 @@ export default {
         loaded_data:context.$store.state.loaded_data,
         container:context.$store.state.container,
       }
-      // console.log(JSON.stringify(o));
 
     },    
     test(){
-      // console.log("Events Fired!!!!!");
     }
   }
 }
