@@ -1,7 +1,7 @@
 
 <template>
 	<div>        
-        <a href="#!" @click='addItem' data-item-type="custom" class = "btn btn-primary create-custom-btn"><i class='fa fa-plus'></i>  Custom Button</a>
+        <a href="#!" @click='addItem' data-item-type="custom" class = "btn bg-white  border create-custom-btn"><i class='fa fa-plus'></i>  Custom Button</a>
 	</div>
 </template>
 <script>

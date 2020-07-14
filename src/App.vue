@@ -18,10 +18,7 @@
 
 
     <div class="row " >
-      <div style="background:#fff;    width: 48.7%;" class="pt-5">
-        <element-select-dropdown :loaded_data='loaded_data'></element-select-dropdown>
-         <container-presets></container-presets>   
-      </div>
+      
     </div>
 
     <div class="row">
@@ -29,7 +26,13 @@
 
     </div>
     <div class="row" @elementSelected="test" >
-      <div class="col m6 " id = "serp-settings-wrap" style="background:#fff;">         
+
+      <div class="col m6 " id = "serp-settings-wrap" style="background:#fff; height: 78vh;    overflow: hidden;    overflow-y: scroll;">       
+      <div style="background:#fff;    width: 48.7%;" class="pt-5">
+        <element-select-dropdown :loaded_data='loaded_data'></element-select-dropdown>
+         <container-presets></container-presets>   
+      </div>
+      <div style="clear:both"></div>  
         <b-tabs content-class="mt-3">
           <b-tab title="CONTENT" active>
             <content-settings></content-settings>            
@@ -46,7 +49,7 @@
       </div>
 
       <div class="col m7 " style="    display: flex;    justify-content: flex-end;">
-          <div class="serp-preview-wrap main-mockup" style="width: 100%;max-width: 626px;position: fixed;margin: 0; padding: 0; top: 0;transform: scale(0.85);">
+          <div class="serp-preview-wrap main-mockup" style="width: 100%;max-width: 626px;position: absolute;margin: 0px;padding: 0px;top: -130px;transform: scale(0.85);">
             <div class="serp-preview-screen" style=" max-width: 365px;width: 365px;">    
               <div class="serp-preview-content">
                 <div class="serp-preview-content-wrap" style="text-align:center;  position: absolute;

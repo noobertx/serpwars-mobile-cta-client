@@ -10,7 +10,7 @@
 				<b-form-input id="range-1" v-model="item.size" type="range"  :max="max" :step="getStep"></b-form-input>
 			</div>		
 			<div class="col-1 text-right mt-0 p-0">
-				<input type="number"  v-model="item.size" :step="getStep" style="font-size: 1rem; padding: 6px 4px;border: 1px solid #ced4da;">				
+				<input type="number"  v-model="item.size" :step="getStep" style="font-size: 0.7rem;padding: 10px 4px;border: 1px solid rgb(206, 212, 218);">				
 			</div>
 			<div class="col-2 p-0 pr-3">
 				<b-form-select v-model="item.unit" :options="units" disabled-field="notEnabled"></b-form-select>				

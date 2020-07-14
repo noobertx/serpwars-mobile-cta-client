@@ -19,7 +19,7 @@
        <container-presets></container-presets>   
     </div>
     <div class="row">
-      <!-- <element-select-dropdown :loaded_data='loaded_data'></element-select-dropdown> -->
+      <element-select-dropdown :loaded_data='loaded_data'></element-select-dropdown>
       <!-- <a href="#" class="btn red white-text" @click="deleteElement" v-show="showDelete"><i class="fa fa-times"></i> Delete This Element</a> -->
 
     </div>
