@@ -210,7 +210,7 @@ padding: 0px!important;
     align-items: center;
 }
 .serp-button-collections>ul .ca_button_content{
-	padding: 10px;
+	padding: 0 10px;
 	min-height: 42.2px;
 }
 li.ca-share-button.item{

@@ -7,6 +7,7 @@
 </div>
 </template>
 <script>
+	import { mapState, mapActions } from 'vuex'
 	export default{
 		name:"ContextMenu",
 		data:function(){
@@ -19,6 +20,7 @@
 
 		},
 		computed:{
+			...mapState('cta',['loaded_data','current_item','container']),
 			displayMenu:function(){
 				return (this.visible);
 			}
@@ -26,8 +28,8 @@
 		methods:{
 			deleteItem:function(){
 				// console.log(this.index);
-				this.$store.state.loaded_data.splice(this.index,1);
-				this.$store.state.current_item= -1;
+				this.loaded_data.splice(this.index,1);
+				this.current_item= -1;
 
 			},
 			hideContextMenu:function(){

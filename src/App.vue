@@ -28,7 +28,7 @@
     <div class="row"  >
     <!-- <div class="row" @elementSelected="test" > -->
 
-      <div class="col m6 " id = "serp-settings-wrap" style="background:#fff; height: 78vh;    overflow: hidden;    overflow-y: scroll;">       
+      <div class="col-md-6 " id = "serp-settings-wrap" style="background:#fff; height: 78vh;    overflow: hidden;    overflow-y: scroll;">       
       <div style="background:#fff;" class="pt-5">
         <element-select-dropdown></element-select-dropdown>
          <container-presets></container-presets>   
@@ -163,7 +163,9 @@ export default {
               var  parseData = response.data;
               var  content = JSON.parse(parseData.content);
               context.loaded_data = content.loaded_data;
+              context.$store.commit('cta/updateLoadedData', content.loaded_data)
               context.container = content.container;
+              context.$store.commit('cta/updateContainer', content.loaded_data)
               context.title = parseData.title;
               Toastify({
                 text: "Loaded CTA Buttons",
@@ -281,7 +283,7 @@ export default {
   background: #eee;
 }
 .container {
-    width: 85%!important;
+    width: 100%!important;
     margin: 0 auto 0 0;
 }
 .loading-icon {
@@ -393,9 +395,9 @@ ul.element-selector a:hover {
   
   .main-mockup{
      background-image:url("./assets/27709270-21.png");
-    background-size: 62.22% 100%;
+    background-size: 63.2% 100%;
     /* height: 650px; */
-    background-position-x: 81%;
+    background-position-x: 100%;
     background-position-y: -3%;
     background-repeat: no-repeat;
   }
@@ -540,7 +542,7 @@ a.btn.blue.btn-block.save_btn:hover {
 }
 
 .form-group legend,label,.field_group label {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
     color: #555;
 }
@@ -567,4 +569,13 @@ a.btn.blue.btn-block.save_btn:hover {
 .settings-panel-content>.row:last-child {
     border-bottom: 1px solid #ddd;
 }
+.wp-core-ui select {
+    font-size: 0.7em!important;
+    height: 35px!important;
+}
+#serp-settings-wrap .card {
+    padding: 0!important;
+    margin: 0!important;
+}
+
 </style>

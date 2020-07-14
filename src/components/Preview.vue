@@ -3,7 +3,7 @@
             <div class="serp-preview-screen" style=" max-width: 365px;width: 365px;">    
               <div class="serp-preview-content">
                 <div class="serp-preview-content-wrap" style="text-align:center;  position: absolute;
-    left: 34.9%;top:62px" >
+    left: 41%;top:62px" >
                   <div class="serp-preview-content-area"> 
                   <div class="serp-preview-body" @elementSelected="test" style="width: 300px;margin: 0 auto;height: 528px;overflow: hidden;">
                       <div class="serp-preview-body-full-content"></div>

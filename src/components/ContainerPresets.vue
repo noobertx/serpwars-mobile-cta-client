@@ -112,6 +112,7 @@
     display: block;
     float: left;
     width: 68px;
+    height: 68px;
     text-align: center;
     padding: 4px;
     border: 1px solid #ccc;

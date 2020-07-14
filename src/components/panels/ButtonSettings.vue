@@ -4,7 +4,7 @@
 			<b-col cols="4" sm="12">
 				<label >Link Text </label>
 			</b-col>
-			<b-col cols="8" sm="11">
+			<b-col cols="8" sm="12">
 				<input type="text" class="serp-textfield browser-default" name="link_text" v-model="loaded_data[current_item].link_text">  
 			</b-col>
 			<b-col cols="8" sm="12" class="pt-2 pl-0">
@@ -126,11 +126,6 @@
 		<b-row >
 			<b-col cols="12" sm="12">
 				<input-size label="Main Width" :item="container.cw" :max="320" :units="['px','em','rem','%']"></input-size>	
-			</b-col>
-		</b-row>
-		<b-row>
-			<b-col cols="12" sm="12">
-				<input-size label="Text Size" :item="loaded_data[current_item].style.text" :units="['px','em','rem','%']"></input-size>
 			</b-col>
 		</b-row>
 	</div>
