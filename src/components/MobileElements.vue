@@ -1,7 +1,6 @@
 <template>
 	<div class="serp-mobile-elements">
 		<div class="serp-button-collections-wrap">
-
 			<div class="serp-button-collections"  style="overflow: hidden"  v-if="loaded_data.length>0">
 				<ul :class="getLayout" >
 				<draggable v-model="loaded_data" :options="{draggable:'.item'}" :move="checkMove" :style="getStyle">
@@ -97,12 +96,9 @@
 				return o
 			},
 			mainStyle:function(el){
-
 				return {
 					"background-color":el.style.main.background,
-					"color":el.style.main.color
-					
-
+					"color":el.style.main.color				
 				}
 			},
 			iconStyle:function(el){
@@ -134,24 +130,9 @@
 			},
 			setVerticalLayout:function(el){
 				return el.style.main.layout+ " "+el.content_visibility;
-			},
-			
-
-			checkMove:function(t){
-			
-				return t;
-			
-            // this.list1.forEach(function(t) {
-            //     "count_down" == t.type && setTimeout(function() {
-            //         $("#" + t.id).find(".serp-clock").remove(),
-            //         $("#" + t.id).find(".ca_button_content").append($("<span>", {
-            //             class: "ca_btn_text serp-clock"
-            //         })),
-            //         $("#" + t.id).find(".serp-clock").countdown("2020/10/10", function(t) {
-            //             $(this).html(t.strftime(format))
-            //         })
-            //     }, 500)
-            // })
+			},		
+			checkMove:function(t){			
+				return t;			
         },		
 		}
 	}
@@ -247,5 +228,4 @@ height: 100%;
 	display: none;
 
 }
-
 </style>

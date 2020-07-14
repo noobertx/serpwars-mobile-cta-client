@@ -61,27 +61,12 @@
 import { mapState, mapActions } from 'vuex'
 import axios from 'axios';
 
-import VueTinyTabs from 'vue-tiny-tabs'
 import ContainerPresets from './components/ContainerPresets.vue'
-import Accordion from './components/Accordion.vue'
-
-
-import InputSize from './components/ui/InputSize.vue'
-import PageSelector from './components/ui/PageSelector.vue'
 import NavBar from './components/NavBar.vue'
-// import ColorPicker from './components/ui/ColorPicker.vue'
-import SimpleColorPicker from './components/ui/SimpleColorPicker.vue'
-import NewUi from './components/ui/NewUi.vue'
 import ElementSelectDropdown from './components/ui/ElementSelectDropdown.vue'
-
-import SimpleIconPicker from './components/ui/SimpleIconPicker.vue'
-
-import MobileElements from './components/MobileElements.vue'
 import ContentSettings from './components/ContentSettings.vue'
 import AdvanceSettings from './components/AdvanceSettings.vue'
 import Preview from './components/Preview.vue'
-
-
 import "toastify-js/src/toastify.css"
 import Toastify from 'toastify-js'
 import qs  from 'qs';
@@ -102,21 +87,11 @@ export default {
     "element_id"
   ],
   components: {
-    Accordion,
-    SimpleColorPicker,
-    NewUi,
-    InputSize,
     ContainerPresets,
-    PageSelector,
-    SimpleIconPicker,
-    MobileElements,
     ContentSettings,
     AdvanceSettings,
     Preview,
-    InputSize,
     ElementSelectDropdown,
-    NavBar,
-    'vue-tiny-tabs': VueTinyTabs
   },
   computed:{
     ...mapState('cta',['loaded_data','current_item','title'])
