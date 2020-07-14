@@ -417,7 +417,7 @@ ul.element-selector a:hover {
 }
   
   .main-mockup{
-     background-image:url("./assets/27709270.png");
+     background-image:url("./assets/27709270-21.png");
     background-size: 62.22% 100%;
     /* height: 650px; */
     background-position-x: 81%;
@@ -568,5 +568,28 @@ a.btn.blue.btn-block.save_btn:hover {
     font-size: 13px;
     font-weight: 700;
     color: #555;
+}
+
+.serp-color-picker{
+    border-radius: 5px!important;
+    overflow:hidden;
+}
+
+
+.btn-group-toggle span {
+    font-size: 10px;
+}
+
+.settings-panel-content>.row {
+    border: 1px solid #ddd;
+    border-bottom: none;
+    padding-bottom: 20px;
+    padding-top: 10px;
+    border-left: none;
+    border-right: none;
+}
+
+.settings-panel-content>.row:last-child {
+    border-bottom: 1px solid #ddd;
 }
 </style>

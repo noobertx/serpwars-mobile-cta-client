@@ -187,7 +187,7 @@ position: relative;
 }
 .serp-button-collections-wrap{
 	position: absolute;
-	bottom:-10px;
+	bottom:0px;
 	left: 5px;
 	right: 0;
 }
