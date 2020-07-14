@@ -4,10 +4,24 @@
 			<b-col cols="4" sm="12">
 				<label >Link Text </label>
 			</b-col>
-			<b-col cols="8" sm="12">
+			<b-col cols="8" sm="11">
 				<input type="text" class="serp-textfield browser-default" name="link_text" v-model="loaded_data[current_item].link_text">  
 			</b-col>
+			<b-col cols="8" sm="12" class="pt-2 pl-0">
+				<b-form-checkbox
+   				  id="checkbox-1"
+   				  v-model="status"
+   				  name="checkbox-1"
+   				  value="true"
+   				  unchecked-value="false"
+   				>
+   				Enable Sub Text
+   				</b-form-checkbox>
+			</b-col>
 		</b-row>
+
+		<div  v-if="status=='true'" class="pb-2 pt-2 pl-0 pr-0 border-top">
+			
 		<b-row>
 			<b-col cols="4" sm="12">
 				<label >Sub Text </label>
@@ -16,6 +30,7 @@
 				<input type="text" class="serp-textfield browser-default" name="sub_text" v-model="loaded_data[current_item].sub_text">  
 			</b-col>
 		</b-row>
+		</div>
 		<b-row>
 			<b-col cols="4" sm="12">
 				<label >URL </label>
@@ -39,7 +54,7 @@
 				<label >Text Color </label>
 				 <simple-color-picker item="text" field="color" ></simple-color-picker>
 			</b-col>
-			<b-col cols="3" sm="3">
+			<b-col cols="3" sm="3" v-if="status=='true'">
 				<label >Sub Text Color </label>
 				 <simple-color-picker item="sub_text" field="color" ></simple-color-picker>
 			</b-col>
@@ -128,7 +143,7 @@
 		name:"ButtonSettings",
     	data() {
       		return {
-       
+       			status:false
       		}
     	},
     	mounted(){

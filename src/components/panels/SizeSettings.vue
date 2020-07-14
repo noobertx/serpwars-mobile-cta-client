@@ -1,14 +1,16 @@
 <template>
 	<div class="settings-panel-content">
 		<b-row>
-			<b-col cols="12" sm="12">
+			<b-col cols="6" sm="6">
 				<label for="auto_width">                    
                 	<input type="checkbox" name="auto_width" id="auto_width" true-value="true" false-value="" v-model="loaded_data[current_item].style.main.adjust_width"> Adjust the Width
                 </label>
+			</b-col>
+      <b-col cols="6" sm="6">
                 <label for="auto_height">                    
                 	<input type="checkbox" name="auto_height" id="auto_height" true-value="true" false-value="" v-model="loaded_data[current_item].style.main.adjust_height"> Adjust Height
                	</label>
-			</b-col>
+      </b-col>
 		</b-row>
 		<b-row  v-if="showRangeWidth">
 			<b-col cols="12" sm="12">

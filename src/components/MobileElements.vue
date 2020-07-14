@@ -10,9 +10,8 @@
 						<a :href="element.link_path" class = "waves-effect" :style="mainStyle(element)">
 							<div class="ca_button_content" :class="setVerticalLayout(element)"> 
 								<span class = "ca_icon fab " v-bind:class="element.icon" :style="iconStyle(element)"></span>
-								<span class = "ca_btn_text" :style="textStyle(element)" >{{element.link_text}}
+								<span class = "ca_btn_text" :style="textStyle(element)" >{{element.link_text}}</span>
 								<span class = "ca_btn_sub_text" :style="subTextStyle(element)" ><br>{{element.sub_text}}</span>
-								</span>
 							</div>							
 						</a>
 						</context-menu>
@@ -110,21 +109,24 @@
 				// console.log(el);
 				return {
 					"color":el.style.icon.color,
-					"font-size":el.style.icon.size+el.style.icon.unit
+					"font-size":el.style.icon.size+el.style.icon.unit,
+					"line-height":el.style.icon.size+el.style.icon.unit
 				}
 			},
 			textStyle:function(el){
 				// console.log(el);
 				return {
 					"color":el.style.text.color,
-					"font-size":el.style.text.size+el.style.text.unit
+					"font-size":el.style.text.size+el.style.text.unit,
+					"line-height":el.style.text.size+el.style.text.unit
 				}
 			},
 			subTextStyle:function(el){
 				// console.log(el);
 				return {
 					"color":el.style.sub_text.color,
-					"font-size":el.style.sub_text.size+el.style.sub_text.unit
+					"font-size":el.style.sub_text.size+el.style.sub_text.unit,
+					"line-height":el.style.sub_text.size+el.style.sub_text.unit
 				}
 			},
 			showVisibleContent:function(el){
@@ -196,6 +198,7 @@ display: block;
 }
 .ca_button_content.vertical{
 display: block;
+padding: 0px!important;
 }
 .ca_button_content {
 

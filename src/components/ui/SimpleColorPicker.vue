@@ -24,7 +24,7 @@
 		},
 		mounted() {
 			var context = this;
-			var color = this.loaded_data[this.current_item].style[this.item][this.field];
+			var color = context.loaded_data[context.current_item].style[context.item][context.field];
         	// return 
 			this.setColor(color || '#000000');
 		},
@@ -49,7 +49,7 @@
 					a: rgba[3],
 				}
 			}
-			this.loaded_data[this.current_item].style[context.item][context.field] = this.colors.hex;
+			context.loaded_data[context.current_item].style[context.item][context.field] = this.colors.hex;
 			
 		},
 		showPicker() {
@@ -80,6 +80,8 @@
 				target = e.target;
 			if(el !== target && !el.contains(target)) {
 				this.hidePicker()
+			}else{
+				this.showPicker()				
 			}
 		}
 	},
@@ -105,14 +107,17 @@
 	position:relative;
 }
 .serp-color-picker input.form-control {
-    padding-left: 35px!important;
-    border: none!important;
-    /*height: 1.25em!important;*/
+       padding-left: 35px!important;
+    /* border: none!important; */
+    /* height: 1.25em!important; */
     padding-top: 6px;
     padding-bottom: 6px;
     color: #555;
     font-size: 14px;
-    border-radius:5px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: none!important;
+    border: 1px solid #ccc;
 }
 span.input-group-addon.color-picker-container {
     position: absolute;
@@ -122,13 +127,17 @@ span.input-group-addon.color-picker-container {
     border-left:none;
 }
 .serp-color-picker span.current-color {
-    /*position: absolute;*/
+    position: absolute;
     top: 0;
     height: 35px!important;
     width: 32px!important;
-    /*border-radius: 200px!important;*/
+    border-top-left-radius: 5px!important;
     cursor: pointer;
     display: block;
+    border-bottom-left-radius: 5px!important;
+    border: 1px solid #ccc;
+    border-left: none;
+
 }
 
 .input-group.serp-color-picker {

@@ -572,7 +572,7 @@ a.btn.blue.btn-block.save_btn:hover {
 
 .serp-color-picker{
     border-radius: 5px!important;
-    overflow:hidden;
+    /*overflow:hidden;*/
 }
 
 
