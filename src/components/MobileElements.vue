@@ -46,7 +46,7 @@
 			...mapState('cta',['loaded_data','current_item','container']),
 			getLayout:function(){
 
-				return container.layout;
+				return this.container.layout;
 			},
 			getStyle:function(){
 					return "width:"+this.container.cw.size+this.container.cw.unit+";";			
