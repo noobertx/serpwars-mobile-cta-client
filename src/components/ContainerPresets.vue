@@ -1,5 +1,5 @@
 <template>
-	<div class="preset-selector">
+	<div class="preset-selector mb-2">
 		<ul>
 			<li>
 				<a href="#" @click="setPreset(0)">

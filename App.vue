@@ -893,7 +893,7 @@ ul.element-selector a:hover {
     background:url("././assets/07.jpg");;
   }
   .preset-selector ul {
-    width: 80%;
+    width: 100%;
     padding: 0;
   }
   .preset-selector ul li a{

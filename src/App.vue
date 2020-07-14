@@ -232,7 +232,7 @@ export default {
           context.isSaving = false;
         },2000)
 
-        console.log(JSON.stringify(context.$store.state.loaded_data));
+        // console.log(JSON.stringify(context.$store.state.loaded_data));
       }else{
         var context = this;
         var title =  context.$store.state.title;
@@ -464,10 +464,17 @@ ul.element-selector a:hover {
     background:url("././assets/07.jpg");;
   }
   .preset-selector ul {
-    width: 80%;
+    width: 100%;
     padding: 0;
   }
+  header[role='tab']  .btn-info {
+    background-color: #4184F4;
+    border:1px solid #4184F4;
+}
 
+header[role='tab'] .btn-info:hover {
+    background-color: #4157f4;
+}
   select.button_type{
     width: 100%!important;
   }
@@ -517,7 +524,8 @@ nav.tabs {
     padding: 0 10px;
 }
   .tabs{
-    /*height: 30px;*/
+    margin-top:30px;
+
   }
   .tinytabs .tabs .tab{
     font-size: 12px;

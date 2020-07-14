@@ -33,7 +33,7 @@
 			}
 		},
 		mounted(){
-			console.log(this.max);
+			// console.log(this.max);
 		},
 		computed:{
 			getStep(){
