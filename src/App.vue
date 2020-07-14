@@ -25,10 +25,11 @@
       <!-- <a href="#" class="btn red white-text" @click="deleteElement" v-show="showDelete"><i class="fa fa-times"></i> Delete This Element</a> -->
 
     </div>
-    <div class="row" @elementSelected="test" >
+    <div class="row"  >
+    <!-- <div class="row" @elementSelected="test" > -->
 
       <div class="col m6 " id = "serp-settings-wrap" style="background:#fff; height: 78vh;    overflow: hidden;    overflow-y: scroll;">       
-      <div style="background:#fff;    width: 48.7%;" class="pt-5">
+      <div style="background:#fff;" class="pt-5">
         <element-select-dropdown :loaded_data='loaded_data'></element-select-dropdown>
          <container-presets></container-presets>   
       </div>
@@ -49,21 +50,7 @@
       </div>
 
       <div class="col m7 " style="    display: flex;    justify-content: flex-end;">
-          <div class="serp-preview-wrap main-mockup" style="width: 100%;max-width: 626px;position: absolute;margin: 0px;padding: 0px;top: -130px;transform: scale(0.85);">
-            <div class="serp-preview-screen" style=" max-width: 365px;width: 365px;">    
-              <div class="serp-preview-content">
-                <div class="serp-preview-content-wrap" style="text-align:center;  position: absolute;
-    left: 35%;top:62px" >
-                  <div class="serp-preview-content-area"> 
-                  <div class="serp-preview-body" @elementSelected="test" style="width: 320px;margin: 0 auto;height: 519px;overflow: hidden;">
-                      <div class="serp-preview-body-full-content"></div>
-                    </div>
-                  </div>          
-                  <mobile-elements :loaded_data='loaded_data' :current_item="current_item" @ItemIndexSelected="setcurrentItem"></mobile-elements>
-                </div>
-              </div>                    
-            </div>
-          </div>
+          <preview :loaded_data='loaded_data' :current_item='current_item'></preview>
       </div>
     </div>  
   </div>
@@ -92,6 +79,7 @@ import SimpleIconPicker from './components/ui/SimpleIconPicker.vue'
 import MobileElements from './components/MobileElements.vue'
 import ContentSettings from './components/ContentSettings.vue'
 import AdvanceSettings from './components/AdvanceSettings.vue'
+import Preview from './components/Preview.vue'
 
 
 import "toastify-js/src/toastify.css"
@@ -125,6 +113,7 @@ export default {
     MobileElements,
     ContentSettings,
     AdvanceSettings,
+    Preview,
     InputSize,
     ElementSelectDropdown,
     NavBar,
@@ -279,10 +268,7 @@ export default {
         })
 
       }
-    },
-    setcurrentItem:function(e){
-      this.current_item = e;
-    },
+    },    
     deleteElement:function(){
       this.$store.state.loaded_data.splice(this.$store.state.current_item,1)
     },
@@ -295,8 +281,7 @@ export default {
       }
 
     },    
-    test(){
-    }
+    
   }
 }
 </script>
