@@ -17,14 +17,14 @@
     </div>
 
 
-    <div class="row">
-      <div style="background:#fff;    width: 48.7%;">
+    <div class="row " >
+      <div style="background:#fff;    width: 48.7%;" class="pt-5">
+        <element-select-dropdown :loaded_data='loaded_data'></element-select-dropdown>
          <container-presets></container-presets>   
       </div>
     </div>
 
     <div class="row">
-      <!-- <element-select-dropdown :loaded_data='loaded_data'></element-select-dropdown> -->
       <!-- <a href="#" class="btn red white-text" @click="deleteElement" v-show="showDelete"><i class="fa fa-times"></i> Delete This Element</a> -->
 
     </div>
@@ -82,6 +82,7 @@ import NavBar from './components/NavBar.vue'
 // import ColorPicker from './components/ui/ColorPicker.vue'
 import SimpleColorPicker from './components/ui/SimpleColorPicker.vue'
 import NewUi from './components/ui/NewUi.vue'
+import ElementSelectDropdown from './components/ui/ElementSelectDropdown.vue'
 
 import SimpleIconPicker from './components/ui/SimpleIconPicker.vue'
 
@@ -122,6 +123,7 @@ export default {
     ContentSettings,
     AdvanceSettings,
     InputSize,
+    ElementSelectDropdown,
     NavBar,
     'vue-tiny-tabs': VueTinyTabs
   },
