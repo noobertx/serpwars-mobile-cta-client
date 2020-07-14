@@ -2,10 +2,10 @@
 	<div class="serp-mobile-elements">
 		<div class="serp-button-collections-wrap">
 
-			<div class="serp-button-collections"  style="overflow: hidden"  v-if="$store.state.loaded_data.length>0">
-				<ul :class="getLayout">
-				<draggable v-model="$store.state.loaded_data" :options="{draggable:'.item'}" :move="checkMove" :style="getStyle">
-					<li v-for="(element, index) in $store.state.loaded_data"  class="ca-share-button item waves-effect" :style="getWidth(element)" :id="element.id"  @click="setcurrentItem(index)" v-bind:key="index">						
+			<div class="serp-button-collections"  style="overflow: hidden"  v-if="loaded_data.length>0">
+				<ul :class="getLayout" >
+				<draggable v-model="loaded_data" :options="{draggable:'.item'}" :move="checkMove" :style="getStyle">
+					<li v-for="(element, index) in loaded_data"  class="ca-share-button item waves-effect" :style="getWidth(element)" :id="element.id"  @click="setcurrentItem(index)" v-bind:key="index">						
 						<context-menu :index="index">							
 						<a :href="element.link_path" class = "waves-effect" :style="mainStyle(element)">
 							<div class="ca_button_content" :class="setVerticalLayout(element)"> 
@@ -24,6 +24,7 @@
 	</div>
 </template>
 <script>
+	import { mapState, mapActions } from 'vuex'
 	import draggable from 'vuedraggable'
 	import ContextMenu from './ui/ContextMenu.vue'
 	export default{
@@ -33,8 +34,7 @@
             ContextMenu
         },
 		props:[
-			'loaded_data',
-			'current_item'
+			
 		],
 		data:function(){
 			return {
@@ -45,29 +45,30 @@
 
 		},
 		computed:{
+			...mapState('cta',['loaded_data','current_item','container']),
 			getLayout:function(){
 
-				return this.$store.state.container.layout;
+				return container.layout;
 			},
 			getStyle:function(){
-				if(this.$store.state.container.width=="custom"){
-
-					return "width:"+this.$store.state.container.cw.size+this.$store.state.container.cw.unit+";";					
-				}else{
-					return "width:"+this.$store.state.container.width;
-				}
+					return "width:"+this.container.cw.size+this.container.cw.unit+";";			
 			},
+			current_item:{
+				get () {
+        			return this.$store.state.current_item
+      			},
+      			set (value) {
+       				 this.$store.commit('cta/setCurrentItem', value)
+      			}
+			}
 		},
 		methods:{	
-			setcurrentItem:function(item){				
-				this.$store.commit("setCurrentItem",item);
-				
-				// this.$store.state.current_item = item;
-				// console.log(this.$store.state.current_item );
+			setcurrentItem:function(item){	
+				this.current_item = item;
 			},
 			
 			deleteItem:function(index){
-				this.$store.state.loaded_data.splice(index,1);
+				loaded_data.splice(index,1);
 			},
 
 			getWidth:function(el){

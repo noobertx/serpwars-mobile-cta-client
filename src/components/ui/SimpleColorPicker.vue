@@ -1,13 +1,14 @@
 <template>
 	<div class="input-group color-picker serp-color-picker" ref="colorpicker">
-	<input type="text" class="form-control" v-model="$store.state.loaded_data[$store.state.current_item].style[item][field]" @focus="showPicker()" @input="updateFromInput" />
+	<input type="text" class="form-control" v-model="loaded_data[current_item].style[item][field]" @focus="showPicker()" @input="updateFromInput" />
 	<span class="input-group-addon color-picker-container">
-		<span class="current-color" :style="'background-color: ' + $store.state.loaded_data[$store.state.current_item].style[item][field]" @click="togglePicker()"></span>
-			<chrome-picker :value="$store.state.loaded_data[$store.state.current_item].style[item][field]" @input="updateFromPicker" v-if="displayPicker" />
+		<span class="current-color" :style="'background-color: ' + loaded_data[current_item].style[item][field]" @click="togglePicker()"></span>
+			<chrome-picker :value="loaded_data[current_item].style[item][field]" @input="updateFromPicker" v-if="displayPicker" />
 		</span>
 	</div>
 </template>
 <script>
+	import { mapState, mapActions } from 'vuex'
 	import { Chrome } from 'vue-color'
 	export default{
 		name:"SimpleColorPicker",
@@ -23,7 +24,7 @@
 		},
 		mounted() {
 			var context = this;
-			var color = context.$store.state.loaded_data[context.$store.state.current_item].style[context.item][context.field];
+			var color = this.loaded_data[this.current_item].style[this.item][this.field];
         	// return 
 			this.setColor(color || '#000000');
 		},
@@ -48,7 +49,7 @@
 					a: rgba[3],
 				}
 			}
-			context.$store.state.loaded_data[context.$store.state.current_item].style[context.item][context.field] = this.colors.hex;
+			this.loaded_data[this.current_item].style[context.item][context.field] = this.colors.hex;
 			
 		},
 		showPicker() {
@@ -90,6 +91,9 @@
 					//document.body.style.background = val;
 				}
 			}
+		},
+		computed:{
+			...mapState('cta',['loaded_data','current_item'])
 		},
 		components: {
 			'chrome-picker': Chrome,

@@ -9,19 +9,16 @@
                       <div class="serp-preview-body-full-content"></div>
                     </div>
                   </div>          
-                  <mobile-elements :loaded_data='loaded_data' :current_item="current_item" @ItemIndexSelected="setcurrentItem"></mobile-elements>
+                  <mobile-elements  @ItemIndexSelected="setcurrentItem"></mobile-elements>
                 </div>
               </div>                    
             </div>
           </div>
 </template>
 <script>
+	import { mapState, mapActions } from 'vuex'
 	import MobileElements from './MobileElements.vue'
 	export default{
-		props:[
-			'loaded_data',
-			'current_item'
-		],
 		components: {
     		MobileElements
   		},
@@ -30,12 +27,15 @@
 			}
 		},
 		mounted(){
-			// console.log(this);
+		},
+		computed:{
+			...mapState('cta',['loaded_data','current_item'])
 		},
 		methods:{
 			test(){
     		},
     		setcurrentItem:function(e){
+    			console.log(e);
       			this.current_item = e;
     		},
 		}

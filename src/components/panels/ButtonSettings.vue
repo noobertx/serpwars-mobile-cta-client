@@ -5,7 +5,7 @@
 				<label >Link Text </label>
 			</b-col>
 			<b-col cols="8" sm="12">
-				<input type="text" class="serp-textfield browser-default" name="link_text" v-model="$store.state.loaded_data[$store.state.current_item].link_text">  
+				<input type="text" class="serp-textfield browser-default" name="link_text" v-model="loaded_data[current_item].link_text">  
 			</b-col>
 		</b-row>
 		<b-row>
@@ -13,7 +13,7 @@
 				<label >Sub Text </label>
 			</b-col>
 			<b-col cols="8" sm="12">						
-				<input type="text" class="serp-textfield browser-default" name="sub_text" v-model="$store.state.loaded_data[$store.state.current_item].sub_text">  
+				<input type="text" class="serp-textfield browser-default" name="sub_text" v-model="loaded_data[current_item].sub_text">  
 			</b-col>
 		</b-row>
 		<b-row>
@@ -21,17 +21,17 @@
 				<label >URL </label>
 			</b-col>
 			<b-col cols="8" sm="12">
-				<input type="text" class="serp-textfield browser-default" name="link_path" v-model="$store.state.loaded_data[$store.state.current_item].link_path">  
+				<input type="text" class="serp-textfield browser-default" name="link_path" v-model="loaded_data[current_item].link_path">  
 			</b-col>
 		</b-row>
 		<b-row>
 			<b-col cols="12" sm="12">
-				<input-size label="Text Size" :item="$store.state.loaded_data[$store.state.current_item].style.text" :units="['px','em','rem','%']"></input-size>
+				<input-size label="Text Size" :item="loaded_data[current_item].style.text" :units="['px','em','rem','%']"></input-size>
 			</b-col>
 		</b-row>
 		<b-row>
 			<b-col cols="12" sm="12">
-				<input-size label="Sub Size" :item="$store.state.loaded_data[$store.state.current_item].style.sub_text" :units="['px','em','rem','%']"></input-size>
+				<input-size label="Sub Size" :item="loaded_data[current_item].style.sub_text" :units="['px','em','rem','%']"></input-size>
 			</b-col>
 		</b-row>
 		<b-row>
@@ -57,7 +57,7 @@
 				<b-form-group label="Content Visibility">
     				<b-form-radio-group
     					id="content-visibility"
-    					v-model="$store.state.loaded_data[$store.state.current_item].content_visibility"
+    					v-model="loaded_data[current_item].content_visibility"
     					:options="[
                     		{ text: 'Show All', value: '' },
                     		{ text: 'Show Text Only', value: 'text_only' },
@@ -75,7 +75,7 @@
 				<b-form-group label="Content Layout">
     				<b-form-radio-group
     					id="content-layout"
-    					v-model="$store.state.loaded_data[$store.state.current_item].style.main.layout"
+    					v-model="loaded_data[current_item].style.main.layout"
     					:options="[
                 		    { text: 'Side Icon', value: '' },
                 		    { text: 'Top Icon', value: 'vertical' }
@@ -92,7 +92,7 @@
 				<b-form-group label="Content Alignment">
     				<b-form-radio-group
     					id="content-alignment"
-    					v-model="$store.state.container.layout"
+    					v-model="container.layout"
     					:options="[
     						{ text: 'Left', value: 'start' },
     						{ text: ' Center', value: 'center' },
@@ -108,19 +108,20 @@
     			</b-form-group>
 			</b-col>
 		</b-row>
-		<b-row v-if="$store.state.container.width=='custom'">
+		<b-row >
 			<b-col cols="12" sm="12">
-				<input-size label="Width" :item="$store.state.container.cw" :max="320" :units="['px','em','rem','%']"></input-size>
+				<input-size label="Main Width" :item="container.cw" :max="320" :units="['px','em','rem','%']"></input-size>	
 			</b-col>
 		</b-row>
 		<b-row>
 			<b-col cols="12" sm="12">
-				<input-size label="Text Size" :item="$store.state.loaded_data[$store.state.current_item].style.text" :units="['px','em','rem','%']"></input-size>
+				<input-size label="Text Size" :item="loaded_data[current_item].style.text" :units="['px','em','rem','%']"></input-size>
 			</b-col>
 		</b-row>
 	</div>
 </template>
 <script>
+	import { mapState, mapActions } from 'vuex'
 	import InputSize from '../ui/InputSize.vue'	
 	import SimpleColorPicker from '../ui/SimpleColorPicker.vue'
 	export default {
@@ -130,6 +131,11 @@
        
       		}
     	},
+    	mounted(){
+    	},
+    	computed:{
+			...mapState('cta',['loaded_data','current_item','container'])
+		},
     	components: {
       		InputSize,
       		SimpleColorPicker

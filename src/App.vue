@@ -12,7 +12,7 @@
     <div class="row bg-primary text-light p-3">
        <b-col cols="12" sm="12">
           <div class="app-title">CTA Name</div>
-          <input type="text" v-model="$store.state.title" class="serp-textfield browser-default" style="width:42%">
+          <input type="text" v-model="title" class="serp-textfield browser-default" style="width:42%">
       </b-col>
     </div>
 
@@ -30,7 +30,7 @@
 
       <div class="col m6 " id = "serp-settings-wrap" style="background:#fff; height: 78vh;    overflow: hidden;    overflow-y: scroll;">       
       <div style="background:#fff;" class="pt-5">
-        <element-select-dropdown :loaded_data='loaded_data'></element-select-dropdown>
+        <element-select-dropdown></element-select-dropdown>
          <container-presets></container-presets>   
       </div>
       <div style="clear:both"></div>  
@@ -58,7 +58,7 @@
 </template>
 
 <script>
-
+import { mapState, mapActions } from 'vuex'
 import axios from 'axios';
 
 import VueTinyTabs from 'vue-tiny-tabs'
@@ -93,8 +93,7 @@ export default {
   name: 'app',
   data:function(){
     return {
-     loaded_data    :JSON.parse('[{"type":"fb_share","name":"","icon":"fab fa-facebook","link_text":"Share","link_path":"#","width":"20","height":"","text_position":"right","display_text":true,"display_icon":true,"visibility_options":"always_visible","visible_on_scroll_value":0,"style":{"main":{"background":"#4284f4","color":"#fff"},"icon":{"background":"#fff","color":"#fff"},"text":{"background":"#fff","color":"#fff"},"border":{"radius":0,"width":0,"style":"none","color":"#fff"},"class":"","id":""}},{"type":"twitter_share","display_text":true,"display_icon":true,"name":"","icon":"fab fa-twitter","link_text":"Share","link_path":"#","width":"20","height":"","text_position":"right","visibility_options":"always_visible","visible_on_scroll_value":0,"style":{"main":{"background":"#000","color":"#fff"},"icon":{"background":"#fff","color":"#fff"},"text":{"background":"#fff","color":"#fff"},"border":{"radius":0,"width":0,"style":"none","color":"#fff"},"class":"","id":""}},{"type":"google_share","name":"","display_text":true,"display_icon":true,"icon":"fab fa-google-plus","link_text":"Share","link_path":"#","width":"20","height":"","text_position":"right","visibility_options":"always_visible","visible_on_scroll_value":0,"style":{"main":{"background":"#000","color":"#fff"},"icon":{"background":"#fff","color":"#fff"},"text":{"background":"#fff","color":"#fff"},"border":{"radius":0,"width":0,"style":"none","color":"#fff"},"class":"","id":""}},{"type":"pinterest_share","display_text":true,"display_icon":true,"name":"","icon":"fab fa-pinterest","link_text":"Share","link_path":"#","width":"20","height":"","text_position":"right","visibility_options":"always_visible","visible_on_scroll_value":0,"style":{"main":{"background":"#000","color":"#fff"},"icon":{"background":"#fff","color":"#fff"},"text":{"background":"#fff","color":"#fff"},"border":{"radius":0,"width":0,"style":"none","color":"#fff"},"class":"","id":""}}]'),
-     current_item:-1,
+     
      isSaving:false,
      isLoaded:false
     }
@@ -119,6 +118,9 @@ export default {
     NavBar,
     'vue-tiny-tabs': VueTinyTabs
   },
+  computed:{
+    ...mapState('cta',['loaded_data','current_item','title'])
+  },
   created(){
     this.$store.state.loaded_data = [];
     this.$store.state.container= JSON.parse('{"class":"","id":"","layout":"start","gtm":{"category":""},"width":"auto","cw":{"size":100,"unit":"%"}}');
@@ -129,7 +131,7 @@ export default {
   computed:{
     getLinkText(){
       var context = this;
-        return context.$store.state.loaded_data[context.$store.state.current_item].link_text
+        return this.loaded_data[this.current_item].link_text
     },
     selectLayout(el){
 
@@ -142,7 +144,12 @@ export default {
     },
     
     
+  },
+  created(){
+    this.loaded_data    =JSON.parse('[{"type":"fb_share","name":"","icon":"fab fa-facebook","link_text":"Share","link_path":"#","width":"20","height":"","text_position":"right","display_text":true,"display_icon":true,"visibility_options":"always_visible","visible_on_scroll_value":0,"style":{"main":{"background":"#4284f4","color":"#fff"},"icon":{"background":"#fff","color":"#fff"},"text":{"background":"#fff","color":"#fff"},"border":{"radius":0,"width":0,"style":"none","color":"#fff"},"class":"","id":""}},{"type":"twitter_share","display_text":true,"display_icon":true,"name":"","icon":"fab fa-twitter","link_text":"Share","link_path":"#","width":"20","height":"","text_position":"right","visibility_options":"always_visible","visible_on_scroll_value":0,"style":{"main":{"background":"#000","color":"#fff"},"icon":{"background":"#fff","color":"#fff"},"text":{"background":"#fff","color":"#fff"},"border":{"radius":0,"width":0,"style":"none","color":"#fff"},"class":"","id":""}},{"type":"google_share","name":"","display_text":true,"display_icon":true,"icon":"fab fa-google-plus","link_text":"Share","link_path":"#","width":"20","height":"","text_position":"right","visibility_options":"always_visible","visible_on_scroll_value":0,"style":{"main":{"background":"#000","color":"#fff"},"icon":{"background":"#fff","color":"#fff"},"text":{"background":"#fff","color":"#fff"},"border":{"radius":0,"width":0,"style":"none","color":"#fff"},"class":"","id":""}},{"type":"pinterest_share","display_text":true,"display_icon":true,"name":"","icon":"fab fa-pinterest","link_text":"Share","link_path":"#","width":"20","height":"","text_position":"right","visibility_options":"always_visible","visible_on_scroll_value":0,"style":{"main":{"background":"#000","color":"#fff"},"icon":{"background":"#fff","color":"#fff"},"text":{"background":"#fff","color":"#fff"},"border":{"radius":0,"width":0,"style":"none","color":"#fff"},"class":"","id":""}}]'),
+    this.current_item=-1;
   }
+
   ,mounted(){
 
         this.loadData(env,fetch_id);
@@ -152,10 +159,10 @@ export default {
     loadData:function(env,fetch_id){
       var context = this;
       if(env=="debug"){
-        this.$store.state.loaded_data = loaded_data;
-        this.$store.state.container = container;
+        this.loaded_data = loaded_data;
+        this.container = container;
 
-        this.$store.state.title = title;
+        this.title = title;
 
         Toastify({
           text: "Debug mode Has Been Enabled",
@@ -180,9 +187,9 @@ export default {
           } ) ).then(response=>{
               var  parseData = response.data;
               var  content = JSON.parse(parseData.content);
-              context.$store.state.loaded_data = content.loaded_data;
-              context.$store.state.container = content.container;
-              context.$store.state.title = parseData.title;
+              context.loaded_data = content.loaded_data;
+              context.container = content.container;
+              context.title = parseData.title;
               Toastify({
                 text: "Loaded CTA Buttons",
                 duration: 3000,
@@ -232,12 +239,12 @@ export default {
           context.isSaving = false;
         },2000)
 
-        // console.log(JSON.stringify(context.$store.state.loaded_data));
+        // console.log(JSON.stringify(context.loaded_data));
       }else{
         var context = this;
-        var title =  context.$store.state.title;
-        var loaded_data =  JSON.stringify(context.$store.state.loaded_data);
-        var container =  JSON.stringify(context.$store.state.container);
+        var title =  context.title;
+        var loaded_data =  JSON.stringify(context.loaded_data);
+        var container =  JSON.stringify(context.container);
 
         console.log(title,loaded_data,container);
 
@@ -270,14 +277,14 @@ export default {
       }
     },    
     deleteElement:function(){
-      this.$store.state.loaded_data.splice(this.$store.state.current_item,1)
+      this.loaded_data.splice(this.current_item,1)
     },
     fetchStoreData:function(){
       var context = this;
       var o = {
-        title:context.$store.state.title,
-        loaded_data:context.$store.state.loaded_data,
-        container:context.$store.state.container,
+        title:context.title,
+        loaded_data:context.loaded_data,
+        container:context.container,
       }
 
     },    

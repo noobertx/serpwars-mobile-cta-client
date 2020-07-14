@@ -54,6 +54,7 @@
 	</div>
 </template>
 <script>
+	import { mapState, mapActions } from 'vuex'
 	export default{
 		name: 'ContainerPresets',
 		data:function(){
@@ -72,12 +73,31 @@
 			};
 		},
 		mounted:function(){
-
+			console.log(this);
+		},
+		computed:{
+			...mapState('cta',['loaded_data','current_item','container']),
+			container:{
+				get () {
+        			return this.$store.state.container
+      			},
+      			set (value) {
+       				 this.$store.commit('cta/updateContainer', value)
+      			}
+			},
+			loaded_data:{
+				get () {
+        			return this.$store.state.loaded_data
+      			},
+      			set (value) {
+       				 this.$store.commit('cta/updateLoadedData', value)
+      			}
+			}
 		},
 		methods:{
 			setPreset:function(index){
-				this.$store.state.loaded_data = this.presets[index].loaded_data;
-				this.$store.state.container = this.presets[index].container;
+				this.loaded_data = this.presets[index].loaded_data;
+				this.container = this.presets[index].container;
 			}
 		}
 	}
