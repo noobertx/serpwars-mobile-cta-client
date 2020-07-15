@@ -10,7 +10,7 @@
 			<b-col cols="8" sm="12" class="pt-2 pl-0">
 				<b-form-checkbox
    				  id="checkbox-1"
-   				  v-model="status"
+   				  v-model="loaded_data[current_item].sub_text_enabled"
    				  name="checkbox-1"
    				  value="true"
    				  unchecked-value="false"
@@ -20,7 +20,7 @@
 			</b-col>
 		</b-row>
 
-		<div  v-if="status=='true'" class="pb-2 pt-2 pl-0 pr-0 border-top">
+		<div  v-if="loaded_data[current_item].sub_text_enabled" class="pb-2 pt-2 pl-0 pr-0 border-top">
 			
 		<b-row>
 			<b-col cols="4" sm="12">
@@ -36,7 +36,7 @@
 				<label >URL </label>
 			</b-col>
 			<b-col cols="8" sm="12">
-				<input type="text" class="serp-textfield browser-default" name="link_path" v-model="loaded_data[current_item].link_path">  
+				<input type="text" class="serp-textfield browser-default" name="link_path" v-model="loaded_data[current_item].link_path" title = "Insert tel:<phone number> to place a contact number">  
 			</b-col>
 		</b-row>
 		<b-row>

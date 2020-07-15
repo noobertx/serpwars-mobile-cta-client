@@ -14,7 +14,6 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
 
-window.ajaxurl = "http://keywordlocal.com/wp-admin/admin-ajax.php" ;
 library.add(faUserSecret)
 
 

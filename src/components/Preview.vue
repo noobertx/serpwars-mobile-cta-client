@@ -1,5 +1,5 @@
 <template>
-	<div class="serp-preview-wrap main-mockup" style="width: 100%;max-width: 626px;position: absolute;margin: 0px;padding: 0px;top: -130px;transform: scale(0.85);">
+	<div class="serp-preview-wrap main-mockup" style="width: 100%;max-width: 626px;position: absolute;margin: 0px;padding: 0px;top: -100px;">
             <div class="serp-preview-screen" style=" max-width: 365px;width: 365px;">    
               <div class="serp-preview-content">
                 <div class="serp-preview-content-wrap" style="text-align:center;  position: absolute;

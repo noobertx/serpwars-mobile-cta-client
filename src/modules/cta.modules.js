@@ -7,6 +7,9 @@ function addFeatures(item){
         if(!o.hasOwnProperty('sub_text')){
           item[i].sub_text = "";
         }
+        if(!o.hasOwnProperty('sub_text_enabled')){
+          item[i].sub_text_enabled = false;
+        }
         if(!o.style.hasOwnProperty('sub_text')){
           item[i].style.sub_text = {"background":"#fff","color":"#ffffff","size":"0.6","unit":"em"};
         }         
@@ -97,6 +100,7 @@ const actions={
               content.loaded_data = addFeatures(content.loaded_data);
               state.loaded_data = content.loaded_data;
               state.container = content.container;
+              console.log(content.loaded_data);
               commit('updateLoadedData', state.loaded_data)
               commit('updateContainer', state.container)
               commit('updateTitle', parseData.title)
