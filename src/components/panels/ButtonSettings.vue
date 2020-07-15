@@ -123,7 +123,27 @@
     			</b-form-group>
 			</b-col>
 		</b-row>
-		<b-row >
+		<b-row>
+			<b-col cols="12" sm="12">
+				<b-form-group label="Content Width">
+    				<b-form-radio-group
+    					id="content-alignment"
+    					v-model="container.width"
+    					:options="[
+    						{ text: 'Custom', value: 'custom' },
+    						{ text: 'Auto', value: 'auto' },
+    						{ text: 'Min Content', value: 'min-content' },
+    						{ text: 'Max Content', value: 'max-content' },
+    						{ text: 'Fill Available', value: '-webkit-fill-available' }
+    					]"
+                  		button-variant="outline-primary"
+    					buttons
+    					name="radios-btn-default"
+    				  ></b-form-radio-group>
+    			</b-form-group>
+			</b-col>
+		</b-row>
+		<b-row v-if="container.width=='custom'">
 			<b-col cols="12" sm="12">
 				<input-size label="Main Width" :item="container.cw" :max="320" :units="['px','em','rem','%']"></input-size>	
 			</b-col>
@@ -144,7 +164,15 @@
     	mounted(){
     	},
     	computed:{
-			...mapState('cta',['loaded_data','current_item','container'])
+			...mapState('cta',['loaded_data','current_item','container']),
+			container:{
+        		get () {
+        		      return this.$store.state.cta.container
+        		    },
+        		set (value) {
+        		   this.$store.commit('cta/updateContainer', value)
+        		}
+    		},
 		},
     	components: {
       		InputSize,

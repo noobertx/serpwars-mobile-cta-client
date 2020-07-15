@@ -23,13 +23,21 @@
 			...mapState('cta',['loaded_data','current_item','container']),
 			displayMenu:function(){
 				return (this.visible);
-			}
+			},
+			current_item:{
+    		    get () {
+    		          return this.$store.state.cta.current_item
+    		        },
+    		    set (value) {
+    		       this.$store.commit('cta/setCurrentItem', value)
+    		    }
+    		},
 		},
 		methods:{
 			deleteItem:function(){
 				// console.log(this.index);
 				this.loaded_data.splice(this.index,1);
-				this.current_item= -1;
+				this.current_item= 0;
 
 			},
 			hideContextMenu:function(){

@@ -2,7 +2,7 @@
 	<div class="serp-mobile-elements">
 		<div class="serp-button-collections-wrap">
 			<div class="serp-button-collections"  style="overflow: hidden"  v-if="loaded_data.length>0">
-				<ul :class="getLayout" >
+				<ul :class="getLayout" style="width:100%">
 				<draggable v-model="loaded_data" :options="{draggable:'.item'}" :move="checkMove" :style="getStyle">
 					<li v-for="(element, index) in loaded_data"  class="ca-share-button item waves-effect" :style="getWidth(element)" :id="element.id"  @click="setcurrentItem(index)" v-bind:key="index">						
 						<context-menu :index="index">							
@@ -58,7 +58,15 @@
       			set (value) {
        				 this.$store.commit('cta/setCurrentItem', value)
       			}
-			}
+			},
+			loaded_data:{
+    		    get () {
+    		          return this.$store.state.cta.loaded_data
+    		        },
+    		    set (value) {
+    		       this.$store.commit('cta/updateLoadedData', value)
+    		    }
+    		},
 		},
 		methods:{	
 			setcurrentItem:function(item){	

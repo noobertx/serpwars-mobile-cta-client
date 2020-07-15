@@ -1,8 +1,6 @@
 /* eslint-disable no-alert */
 <template>
-  <div id="app" class="container" :mydata="element_id">
-      <!-- <button @click="fetchStoreData">Create Presets</button> -->
-    
+  <div id="app" class="container"> 
     <div class="mobile-cta-app-wrap" v-if="!isLoaded">
       <div class="loading-icon">
         <i class="fas fa-circle-notch fa-spin"></i>        
@@ -50,7 +48,7 @@
       </div>
 
       <div class="col m7 " style="    display: flex;    justify-content: flex-end;">
-          <preview :loaded_data='loaded_data' :current_item='current_item'></preview>
+          <preview></preview>
       </div>
     </div>  
   </div>
@@ -59,33 +57,22 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import axios from 'axios';
-
 import ContainerPresets from './components/ContainerPresets.vue'
 import NavBar from './components/NavBar.vue'
 import ElementSelectDropdown from './components/ui/ElementSelectDropdown.vue'
 import ContentSettings from './components/ContentSettings.vue'
 import AdvanceSettings from './components/AdvanceSettings.vue'
 import Preview from './components/Preview.vue'
-import "toastify-js/src/toastify.css"
-import Toastify from 'toastify-js'
-import qs  from 'qs';
-
-
-
 
 export default {
   name: 'app',
   data:function(){
     return {
-     
-     isSaving:false,
-     isLoaded:false
+     isSaving:false,    
+     id:appvar.id,
+     ajaxurl:ajaxurl
     }
   },
-  props:[
-    "element_id"
-  ],
   components: {
     ContainerPresets,
     ContentSettings,
@@ -93,179 +80,66 @@ export default {
     Preview,
     ElementSelectDropdown,
   },
-  computed:{
-    ...mapState('cta',['loaded_data','current_item','title'])
-  },
   created(){
-    this.$store.state.loaded_data = [];
-    this.$store.state.container= JSON.parse('{"class":"","id":"","layout":"start","gtm":{"category":""},"width":"auto","cw":{"size":100,"unit":"%"}}');
+    this.loaded_data = [];
+    this.container= JSON.parse('{"class":"","id":"","layout":"start","gtm":{"category":""},"width":"auto","cw":{"size":100,"unit":"%"}}');
 
 
-    this.$store.state.current_item = 0; 
+    this.current_item = 0; 
   },
   computed:{
+    ...mapState('cta',['title','loaded_data','current_item','container','isLoaded']),
     getLinkText(){
       var context = this;
         return this.loaded_data[this.current_item].link_text
     },
-    selectLayout(el){
-
-
-    },    
-
     showDelete:function(){
-      // console.log(this.$store.state.loaded_data.length);
-      return (this.$store.state.loaded_data.length>0);
+      return (this.loaded_data.length>0);
     },
-    
-    
+    title:{
+        get () {
+              return this.$store.state.cta.title
+            },
+        set (value) {
+           this.$store.commit('cta/updateTitle', value)
+        }
+    },
+    container:{
+        get () {
+              return this.$store.state.cta.container
+            },
+        set (value) {
+           this.$store.commit('cta/updateContainer', value)
+        }
+    },
+    loaded_data:{
+        get () {
+              return this.$store.state.cta.loaded_data
+            },
+        set (value) {
+           this.$store.commit('cta/updateLoadedData', value)
+        }
+    },
+    current_item:{
+        get () {
+              return this.$store.state.cta.current_item
+            },
+        set (value) {
+           this.$store.commit('cta/setCurrentItem', value)
+        }
+    },
   },
-  created(){
-    this.loaded_data    =JSON.parse('[{"type":"fb_share","name":"","icon":"fab fa-facebook","link_text":"Share","link_path":"#","width":"20","height":"","text_position":"right","display_text":true,"display_icon":true,"visibility_options":"always_visible","visible_on_scroll_value":0,"style":{"main":{"background":"#4284f4","color":"#fff"},"icon":{"background":"#fff","color":"#fff"},"text":{"background":"#fff","color":"#fff"},"border":{"radius":0,"width":0,"style":"none","color":"#fff"},"class":"","id":""}},{"type":"twitter_share","display_text":true,"display_icon":true,"name":"","icon":"fab fa-twitter","link_text":"Share","link_path":"#","width":"20","height":"","text_position":"right","visibility_options":"always_visible","visible_on_scroll_value":0,"style":{"main":{"background":"#000","color":"#fff"},"icon":{"background":"#fff","color":"#fff"},"text":{"background":"#fff","color":"#fff"},"border":{"radius":0,"width":0,"style":"none","color":"#fff"},"class":"","id":""}},{"type":"google_share","name":"","display_text":true,"display_icon":true,"icon":"fab fa-google-plus","link_text":"Share","link_path":"#","width":"20","height":"","text_position":"right","visibility_options":"always_visible","visible_on_scroll_value":0,"style":{"main":{"background":"#000","color":"#fff"},"icon":{"background":"#fff","color":"#fff"},"text":{"background":"#fff","color":"#fff"},"border":{"radius":0,"width":0,"style":"none","color":"#fff"},"class":"","id":""}},{"type":"pinterest_share","display_text":true,"display_icon":true,"name":"","icon":"fab fa-pinterest","link_text":"Share","link_path":"#","width":"20","height":"","text_position":"right","visibility_options":"always_visible","visible_on_scroll_value":0,"style":{"main":{"background":"#000","color":"#fff"},"icon":{"background":"#fff","color":"#fff"},"text":{"background":"#fff","color":"#fff"},"border":{"radius":0,"width":0,"style":"none","color":"#fff"},"class":"","id":""}}]'),
-    this.current_item=-1;
-  }
-
-  ,mounted(){
-
-        this.loadData(env,fetch_id);
-
+  mounted(){
+        this.setData({id:this.id,ajaxurl:this.ajaxurl});
+        this.loadData();
   },
   methods:{
-    loadData:function(env,fetch_id){
-      var context = this;
-      if(env=="debug"){
-        this.loaded_data = loaded_data;
-        this.container = container;
-
-        this.title = title;
-
-        Toastify({
-          text: "Debug mode Has Been Enabled",
-          duration: 3000,
-          close: true,
-          gravity: "bottom", // `top` or `bottom`
-          position: 'right', // `left`, `center` or `right`
-          backgroundColor: "linear-gradient(to right, #47a3da, #4284f4)",
-          stopOnFocus: true // Prevents dismissing of toast on hover
-        }).showToast();
-        this.isLoaded = true;
-
-      }else{
-        if(fetch_id!=0){
-          var context = this;
-
-          var data ="";
-
-          axios.post( ajaxurl, qs.stringify( {
-            action:"load_item",
-            id:fetch_id
-          } ) ).then(response=>{
-              var  parseData = response.data;
-              var  content = JSON.parse(parseData.content);
-              context.loaded_data = content.loaded_data;
-              context.$store.commit('cta/updateLoadedData', content.loaded_data)
-              context.container = content.container;
-              context.$store.commit('cta/updateContainer', content.loaded_data)
-              context.title = parseData.title;
-              Toastify({
-                text: "Loaded CTA Buttons",
-                duration: 3000,
-                close: true,
-                gravity: "bottom", // `top` or `bottom`
-                position: 'right', // `left`, `center` or `right`
-                backgroundColor: "linear-gradient(to right, #47a3da, #4284f4)",
-                stopOnFocus: true // Prevents dismissing of toast on hover
-              }).showToast();
-              context.isLoaded = true;
-          })
-
-        }else{
-
-          // console.log(this.$store.state);
-          Toastify({
-          text: "Create New CTA Buttons",
-          duration: 3000,
-          close: true,
-          gravity: "bottom", // `top` or `bottom`
-          position: 'right', // `left`, `center` or `right`
-          backgroundColor: "linear-gradient(to right, #47a3da, #4284f4)",
-          stopOnFocus: true // Prevents dismissing of toast on hover
-          }).showToast();
-
-          this.isLoaded = true;
-        }
-      }
-    },
-
-
-    savingData:function(){
-      this.isSaving = true;
-      var context = this;
-
-      if(env=="debug"){
-        setTimeout(function(){
-          Toastify({
-          text: "Changes has been Saved",
-          duration: 3000,
-          close: true,
-          gravity: "bottom", // `top` or `bottom`
-          position: 'right', // `left`, `center` or `right`
-          backgroundColor: "linear-gradient(to right, #47a3da, #4284f4)",
-          stopOnFocus: true // Prevents dismissing of toast on hover
-        }).showToast();
-          context.isSaving = false;
-        },2000)
-
-        // console.log(JSON.stringify(context.loaded_data));
-      }else{
-        var context = this;
-        var title =  context.title;
-        var loaded_data =  JSON.stringify(context.loaded_data);
-        var container =  JSON.stringify(context.container);
-
-        console.log(title,loaded_data,container);
-
-        axios.post( ajaxurl, qs.stringify( {
-            action:"save_item",
-            id:fetch_id,
-            title:title,
-            loaded_data:loaded_data,
-            container:container,
-          } ) ).then(response=>{
-            var d = response.data;
-            Toastify({
-              text: d.status+" "+d.message,
-              duration: 3000,
-              close: true,
-              gravity: "bottom", // `top` or `bottom`
-              position: 'right', // `left`, `center` or `right`
-              backgroundColor: "linear-gradient(to right, #47a3da, #4284f4)",
-              stopOnFocus: true // Prevents dismissing of toast on hover
-            }).showToast();
-            if(d.return_id==-1){              
-              context.isSaving = false;
-            }else{
-              setTimeout(function(){
-                location.href=location.search+"&id="+d.return_id
-              },2500)
-            }
-        })
-
-      }
-    },    
-    deleteElement:function(){
-      this.loaded_data.splice(this.current_item,1)
-    },
-    fetchStoreData:function(){
-      var context = this;
-      var o = {
-        title:context.title,
-        loaded_data:context.loaded_data,
-        container:context.container,
-      }
-
-    },    
-    
+    ...mapActions('cta',[
+      'setData',
+      'loadData',
+      'savingData',
+      'deleteElement'
+      ])  
   }
 }
 </script>
@@ -577,5 +451,7 @@ a.btn.blue.btn-block.save_btn:hover {
     padding: 0!important;
     margin: 0!important;
 }
-
+.serp-button-collections a {
+    text-decoration: none!important;
+}
 </style>

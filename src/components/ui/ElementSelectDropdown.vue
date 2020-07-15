@@ -9,15 +9,13 @@
 	export default{
 		name: "ElementSelectDropdown",
 		props:[
-			'title',
-			'loaded_data',
 		],
 		data(){
 			return {				
             }
 		},
         computed:{
-            ...mapState('cta',['loaded_data','current_item','container'])
+            ...mapState('cta',['loaded_data','current_item','container','title'])
         },
 		methods:{
 		addItem:function(e){			

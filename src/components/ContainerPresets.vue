@@ -73,7 +73,7 @@
 			};
 		},
 		mounted:function(){
-			console.log(this);
+			// console.log(this);
 		},
 		computed:{
 			...mapState('cta',['loaded_data','current_item','container']),
