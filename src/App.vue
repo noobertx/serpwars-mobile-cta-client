@@ -26,7 +26,7 @@
     <div class="row"  >
     <!-- <div class="row" @elementSelected="test" > -->
 
-      <div class="col-md-6 " id = "serp-settings-wrap" style="background:#fff; height: 78vh;    overflow: hidden;    overflow-y: scroll;">       
+      <div class="col-md-6 " id = "serp-settings-wrap">       
       <div style="background:#fff;" class="pt-5">
         <element-select-dropdown></element-select-dropdown>
          <container-presets></container-presets>   
@@ -413,6 +413,11 @@ a.btn.blue.btn-block.save_btn:hover {
 
 #serp-settings-wrap{
   padding: 0;
+  background:#fff;
+  height: 78vh;
+  overflow: hidden;
+  z-index:1;
+  overflow-y: scroll;
 }
 
 .form-group legend,label,.field_group label {

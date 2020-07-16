@@ -20,7 +20,7 @@
 			</b-col>
 		</b-row>
 
-		<div  v-if="loaded_data[current_item].sub_text_enabled" class="pb-2 pt-2 pl-0 pr-0 border-top">
+		<div  v-if="loaded_data[current_item].sub_text_enabled=='true'" class="pb-2 pt-2 pl-0 pr-0 border-top">
 			
 		<b-row>
 			<b-col cols="4" sm="12">
@@ -85,6 +85,24 @@
     			</b-form-group>
 			</b-col>
 		</b-row>
+		<b-row v-if="(loaded_data[current_item].style.main.layout!='vertical') && (loaded_data[current_item].content_visibility !='icon_only') ">
+			<b-col cols="12" sm="12">
+				<b-form-group label="Text Position">
+    				<b-form-radio-group
+    					id="content-layout"
+    					v-model="loaded_data[current_item].style.text.align"
+    					:options="[
+                		    { text: 'Left ', value: 'left' },
+                		    { text: 'Center', value: 'center' },
+                		    { text: 'Right', value: 'right' }
+                		]"
+                  		button-variant="outline-primary"
+    					buttons
+    					name="radios-btn-default"
+    				  ></b-form-radio-group>
+    			</b-form-group>
+			</b-col>
+		</b-row>
 		<b-row>
 			<b-col cols="12" sm="12">
 				<b-form-group label="Content Layout">
@@ -92,8 +110,9 @@
     					id="content-layout"
     					v-model="loaded_data[current_item].style.main.layout"
     					:options="[
-                		    { text: 'Side Icon', value: '' },
-                		    { text: 'Top Icon', value: 'vertical' }
+                		    { text: 'Left Icon', value: '' },
+                		    { text: 'Top Icon', value: 'vertical' },
+                		    { text: 'Right Icon', value: 'right-icon' }
                 		]"
                   		button-variant="outline-primary"
     					buttons

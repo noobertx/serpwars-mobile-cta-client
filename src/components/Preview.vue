@@ -1,11 +1,10 @@
 <template>
-	<div class="serp-preview-wrap main-mockup" style="width: 100%;max-width: 626px;position: absolute;margin: 0px;padding: 0px;top: -100px;">
-            <div class="serp-preview-screen" style=" max-width: 365px;width: 365px;">    
+	<div class="serp-preview-wrap main-mockup">
+            <div class="serp-preview-screen">    
               <div class="serp-preview-content">
-                <div class="serp-preview-content-wrap" style="text-align:center;  position: absolute;
-    left: 41%;top:62px" >
+                <div class="serp-preview-content-wrap">
                   <div class="serp-preview-content-area"> 
-                  <div class="serp-preview-body" @elementSelected="test" style="width: 300px;margin: 0 auto;height: 528px;overflow: hidden;">
+                  <div class="serp-preview-body" @elementSelected="test">
                       <div class="serp-preview-body-full-content"></div>
                     </div>
                   </div>          
@@ -42,3 +41,29 @@
 	}
 	
 </script>
+<style>
+  .serp-preview-wrap.main-mockup{
+    width: 100%;
+    max-width: 626px;
+    position: absolute;
+    margin: 0px;
+    padding: 0px;
+    top: -100px;    
+  }
+  .serp-preview-screen{
+    max-width: 365px;
+    width: 365px;
+  }
+  .serp-preview-content-wrap{
+    text-align:center;
+    position: absolute;
+    left: 41%;
+    top:62px
+  }
+  .serp-preview-body{
+    width: 300px;
+    margin: 0 auto;
+    height: 528px;
+    overflow: hidden;
+  }
+</style>

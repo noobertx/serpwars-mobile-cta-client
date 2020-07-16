@@ -7,10 +7,15 @@
 					<li v-for="(element, index) in loaded_data"  class="ca-share-button item waves-effect" :style="getWidth(element)" :id="element.id"  @click="setcurrentItem(index)" v-bind:key="index">						
 						<context-menu :index="index">							
 						<a :href="element.link_path" class = "waves-effect" :style="mainStyle(element)">
-							<div class="ca_button_content" :class="setVerticalLayout(element)"> 
-								<span class = "ca_icon fab " v-bind:class="element.icon" :style="iconStyle(element)"></span>
-								<span class = "ca_btn_text" :style="textStyle(element)" >{{element.link_text}}</span>
-								<span class = "ca_btn_sub_text" :style="subTextStyle(element)" ><br>{{element.sub_text}}</span>
+							<div class="ca_button_content" :class="setLayout(element)"> 
+								<div class="icon-wrap" v-if="element.content_visibility!='text_only'" :style="getAlignStyle(element)">									
+									<div class = "ca_icon fab " v-bind:class="element.icon" :style="iconStyle(element)"></div>
+								</div>
+								<div class="text-wrap" v-if="element.content_visibility!='icon_only'" :style="getAlignStyle(element)">									
+								<div class = "ca_btn_text" :style="textStyle(element)" >{{element.link_text}}</div>
+								<div class = "ca_btn_sub_text" :style="subTextStyle(element)" v-if="element.sub_text_enabled"><br>{{element.sub_text}}</div>
+								</div>
+
 							</div>							
 						</a>
 						</context-menu>
@@ -114,7 +119,17 @@
 				return {
 					"color":el.style.icon.color,
 					"font-size":el.style.icon.size+el.style.icon.unit,
-					"line-height":el.style.icon.size+el.style.icon.unit
+					"line-height":"1.5em",
+					"height":"1.2em"
+				}
+			},
+			getAlignStyle:function(el){
+				// console.log(el);
+				if(el.sub_text_enabled){					
+					return {
+						// "vertical-align":"-webkit-baseline-middle",
+						// "vertical-align":"middle",
+					}
 				}
 			},
 			textStyle:function(el){
@@ -130,14 +145,30 @@
 				return {
 					"color":el.style.sub_text.color,
 					"font-size":el.style.sub_text.size+el.style.sub_text.unit,
-					"line-height":el.style.sub_text.size+el.style.sub_text.unit
+					"line-height":"0.4em"
 				}
 			},
 			showVisibleContent:function(el){
 				return el.style.main.visible_content
 			},
-			setVerticalLayout:function(el){
-				return el.style.main.layout+ " "+el.content_visibility;
+			setLayout:function(el){
+				var classes = "";
+				console.log(el);
+				if(el.content_visibility==""){
+					classes+="show-all-elements "
+				}else{
+					classes+=el.content_visibility+"-elements "					
+				}
+				if(el.sub_text!="" && el.sub_text_enabled=="true" && (el.content_visibility!="icon_only")){
+					classes+="subtext-enabled "
+				}else{
+					classes+=" "
+				}
+
+				classes += el.style.main.layout+" ";
+				classes += el.style.text.align+"-text ";
+
+				return classes;
 			},		
 			checkMove:function(t){			
 				return t;			
@@ -218,7 +249,7 @@ padding: 0px!important;
     align-items: center;
 }
 .serp-button-collections>ul .ca_button_content{
-	padding: 0 10px;
+	/*padding: 0 10px;*/
 	min-height: 42.2px;
 }
 li.ca-share-button.item{
@@ -235,5 +266,62 @@ height: 100%;
 .icon_only .ca_btn_text{
 	display: none;
 
+}
+/*7/16/2020*/
+
+.ca_button_content {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+.ca_button_content {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+.icon-wrap >div, .text-wrap>div {
+    /*vertical-align: bottom;*/
+}
+.text-wrap, .icon-wrap {
+    margin: 0 5px;
+}
+.ca_button_content.subtext-enabled  .ca_icon {
+    vertical-align: middle;
+}
+.ca_button_content.icon_only-elements .icon-wrap {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.ca_button_content.show-all-elements{
+	padding: 5px 10px;
+}
+.ca_button_content.right-icon {
+    flex-direction: row-reverse;
+}
+.ca_button_content.center-text .text-wrap{
+    text-align: center;
+}
+
+.ca_button_content.left-text .text-wrap{
+    text-align: left;
+}
+
+.ca_button_content.right-text .text-wrap{
+    text-align: right;
+}
+
+.vertical.center-text .text-wrap,
+.vertical.left-text .text-wrap,
+.vertical.right-text .text-wrap{
+	text-align: center;
+}
+.ca_button_content.show-all-elements {
+    align-items: center;
+    /*text-indent: 5px;*/
+}
+
+.ca_button_content.show-all-elements .text-wrap {
+    text-indent: 5px;
 }
 </style>
