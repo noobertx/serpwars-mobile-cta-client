@@ -1,16 +1,16 @@
 <template>
-	<div class="settings-panel-content">
-		<b-row>
+	<div class="settings-panel-content" >
+		<b-row >
 			<b-col cols="12" sm="12">
 				<simple-icon-picker ></simple-icon-picker> 
 			</b-col>
 		</b-row>
-		<b-row>
+		<b-row >
 			<b-col cols="12" sm="12">
 				<input-size label="Icon Size" :item="loaded_data[current_item].style.icon" :units="['px','em','rem','%']"></input-size>
 			</b-col>
 		</b-row>
-		<b-row>
+		<b-row >
 			<b-col cols="12" sm="12">
 				<label >Icon Color</label>
 				<simple-color-picker item="text" field="color" ></simple-color-picker>

@@ -119,8 +119,7 @@
 				return {
 					"color":el.style.icon.color,
 					"font-size":el.style.icon.size+el.style.icon.unit,
-					"line-height":"1.5em",
-					"height":"1.2em"
+					"line-height":"1.5em"
 				}
 			},
 			getAlignStyle:function(el){
@@ -153,7 +152,7 @@
 			},
 			setLayout:function(el){
 				var classes = "";
-				console.log(el);
+
 				if(el.content_visibility==""){
 					classes+="show-all-elements "
 				}else{
@@ -321,7 +320,7 @@ height: 100%;
     /*text-indent: 5px;*/
 }
 
-.ca_button_content.show-all-elements .text-wrap {
-    text-indent: 5px;
+.ca_button_content.text_only-elements {
+    padding: 10px 5px;
 }
 </style>

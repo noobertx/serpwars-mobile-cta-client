@@ -269,7 +269,7 @@ ul.element-selector a:hover {
   
   .main-mockup{
      background-image:url("./assets/27709270-21.png");
-    background-size: 63.2% 100%;
+    background-size: 68.2% 100%;
     /* height: 650px; */
     background-position-x: 100%;
     background-position-y: -3%;

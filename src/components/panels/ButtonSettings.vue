@@ -1,6 +1,6 @@
 <template>
 	<div class="settings-panel-content">
-		<b-row>
+		<b-row v-if="loaded_data[current_item].content_visibility!='icon_only'">
 			<b-col cols="4" sm="12">
 				<label >Link Text </label>
 			</b-col>
@@ -20,7 +20,7 @@
 			</b-col>
 		</b-row>
 
-		<div  v-if="loaded_data[current_item].sub_text_enabled=='true'" class="pb-2 pt-2 pl-0 pr-0 border-top">
+		<div  v-if="(loaded_data[current_item].sub_text_enabled=='true' && loaded_data[current_item].content_visibility!='icon_only')" class="pb-2 pt-2 pl-0 pr-0 border-top">
 			
 		<b-row>
 			<b-col cols="4" sm="12">
@@ -36,25 +36,25 @@
 				<label >URL </label>
 			</b-col>
 			<b-col cols="8" sm="12">
-				<input type="text" class="serp-textfield browser-default" name="link_path" v-model="loaded_data[current_item].link_path" title = "Insert tel:<phone number> to place a contact number">  
+				<input type="text" class="serp-textfield browser-default" name="link_path" v-model="loaded_data[current_item].link_path" title = "Insert tel:<phone number> to place a contact number\nInsert mailto:someone@example.com To send email">  
 			</b-col>
 		</b-row>
-		<b-row>
+		<b-row v-if="loaded_data[current_item].content_visibility!='icon_only'">
 			<b-col cols="12" sm="12">
 				<input-size label="Text Size" :item="loaded_data[current_item].style.text" :units="['px','em','rem','%']"></input-size>
 			</b-col>
 		</b-row>
-		<b-row>
+		<b-row v-if="loaded_data[current_item].content_visibility!='icon_only'" >
 			<b-col cols="12" sm="12">
 				<input-size label="Sub Size" :item="loaded_data[current_item].style.sub_text" :units="['px','em','rem','%']"></input-size>
 			</b-col>
 		</b-row>
 		<b-row>
-			<b-col cols="3" sm="3">
+			<b-col cols="3" sm="3" v-if="loaded_data[current_item].content_visibility!='icon_only'">
 				<label >Text Color </label>
 				 <simple-color-picker item="text" field="color" ></simple-color-picker>
 			</b-col>
-			<b-col cols="3" sm="3" v-if="status=='true'">
+			<b-col cols="3" sm="3"  v-if="(loaded_data[current_item].sub_text_enabled=='true' && loaded_data[current_item].content_visibility!='icon_only')">
 				<label >Sub Text Color </label>
 				 <simple-color-picker item="sub_text" field="color" ></simple-color-picker>
 			</b-col>

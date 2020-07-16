@@ -57,11 +57,11 @@
   .serp-preview-content-wrap{
     text-align:center;
     position: absolute;
-    left: 41%;
+    left: 36.5%;
     top:62px
   }
   .serp-preview-body{
-    width: 300px;
+    width: 320px;
     margin: 0 auto;
     height: 528px;
     overflow: hidden;
