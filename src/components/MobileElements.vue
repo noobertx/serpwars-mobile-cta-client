@@ -6,7 +6,7 @@
 				<draggable v-model="loaded_data" :options="{draggable:'.item'}" :move="checkMove" :style="getStyle">
 					<li v-for="(element, index) in loaded_data"  class="ca-share-button item waves-effect" :style="getWidth(element)" :id="element.id"  @click="setcurrentItem(index)" v-bind:key="index">						
 						<context-menu :index="index">							
-						<a :href="element.link_path" class = "waves-effect" :style="mainStyle(element)">
+						<a href="#" class = "waves-effect" :style="mainStyle(element)">
 							<div class="ca_button_content" :class="setLayout(element)"> 
 								<div class="icon-wrap" v-if="element.content_visibility!='text_only'" :style="getAlignStyle(element)">									
 									<div class = "ca_icon fab " v-bind:class="element.icon" :style="iconStyle(element)"></div>

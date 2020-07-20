@@ -20,8 +20,8 @@ function addFeatures(item){
 const state = {
 	id:0,
 	ajaxurl:"",
-	title:"From Local",
-	loaded_data:[{"type":"custom","name":"","icon":"fas fa-phone","link_text":"","sub_text":"","display_icon":"true","link_path":"#","width":"20","height":"","text_position":"right","visibility_options":"always_visible","visible_on_scroll_value":"0","content_visibility":"","style":{"main":{"adjust_width":"true","width":{"size":"5","unit":"em"},"adjust_height":"false","height":{"size":"5","unit":"em"},"layout":"","background":"#4184F4","color":"#000","margin":{"top":"0","left":"0","bottom":"0","right":"0"}},"icon":{"background":"#fff","color":"#ffffff","size":"1.5","unit":"em"},"text":{"background":"#fff","color":"#ffffff","size":"1.5","unit":"em"},"border":{"enable":"","radius":"0","width":"0","color":"#fff","size":"1","style":"solid"},"sides":{"top":"true","right":"true","bottom":"true","left":"true"},"sub_text":{"background":"#fff","color":"#ffffff","size":"0.6","unit":"em"},"border_radius":{"enable":"true","top":"0","right":"0","bottom":"0","left":"0","top_left":"200","top_right":"200","bottom_right":"200","bottom_left":"200"},"class":"","id":""},"exclusive_page":"false","gtm":{"category":"","label":"","value":""}}],
+	title:"Untitled CTA",
+	loaded_data:[],
 	current_item:0,
 	container:{"class":"","id":"","layout":"left","gtm":{"category":""},"width":"custom","cw":{"size":"100","unit":"%"}},
 	page_selections:[],
@@ -84,7 +84,7 @@ const actions={
 		loadData:function({state,commit}){
 
 
-
+        if(state.id!=0){
       		env = 'live';
       // var context = this;
           var context = this;
@@ -115,6 +115,12 @@ const actions={
                 stopOnFocus: true // Prevents dismissing of toast on hover
               }).showToast();
           })
+        }else{
+          state.isLoaded = true;
+          state.loaded_data = addFeatures([{"type":"custom","name":"","icon":"fas fa-phone","link_text":"","sub_text":"","display_icon":"true","link_path":"#","width":"20","height":"","text_position":"right","visibility_options":"always_visible","visible_on_scroll_value":"0","content_visibility":"","style":{"main":{"adjust_width":"true","width":{"size":"5","unit":"em"},"adjust_height":"false","height":{"size":"5","unit":"em"},"layout":"","background":"#4184F4","color":"#000","margin":{"top":"0","left":"0","bottom":"0","right":"0"}},"icon":{"background":"#fff","color":"#ffffff","size":"1.5","unit":"em"},"text":{"background":"#fff","color":"#ffffff","size":"1.5","unit":"em"},"border":{"enable":"","radius":"0","width":"0","color":"#fff","size":"1","style":"solid"},"sides":{"top":"true","right":"true","bottom":"true","left":"true"},"sub_text":{"background":"#fff","color":"#ffffff","size":"0.6","unit":"em"},"border_radius":{"enable":"true","top":"0","right":"0","bottom":"0","left":"0","top_left":"200","top_right":"200","bottom_right":"200","bottom_left":"200"},"class":"","id":""},"exclusive_page":"false","gtm":{"category":"","label":"","value":""}}]);
+          commit('updateLoadedData', state.loaded_data)
+          console.log(state);
+        }
     },
     savingData:function(){
       state.isSaving = true;
