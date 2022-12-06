@@ -15,7 +15,7 @@
     "core-js": "^3.6.5",
     "font-awesome": "^4.7.0",
     "materialize-css": "^1.0.0",
-    "qs": "^6.9.4",
+    "qs": "^6.9.7",
     "toastify-js": "^1.8.0",
     "vue": "^2.6.10",
     "vue-color": "^2.7.1",
